@@ -11,16 +11,11 @@
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",  // agrega las reglas de prettier a eslint
+    // "prettier/@typescript-eslint",  // agrega las reglas de prettier a eslint
     "plugin:prettier/recommended" // agregar el plugin que integra eslint con prettier
   ],
   "rules": {
-    "no-console": 1,
-    "prettier/prettier": 2
     // Aca puedes modificar alguna regla específica, por ejemplo:
     // "@typescript-eslint/explicit-function-return-type": "off",
-  },
-  "env": {
-    "node": true
   }
 }
