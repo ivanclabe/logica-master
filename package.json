@@ -6,7 +6,8 @@
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "start:dev": "nodemon",
-    "lint": "tsc eslint '*/**/*.{js,ts}'"
+    "lint": "eslint '*/**/*.ts' --exec",
+    "lint:format": "eslint src/**/*.ts --fix"
   },
   "husky": {
     "hooks": {
@@ -14,7 +15,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
+    "*.{js,ts}": [
       "eslint --fix"
     ]
   },

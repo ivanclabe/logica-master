@@ -15,6 +15,8 @@
     "plugin:prettier/recommended" // agregar el plugin que integra eslint con prettier
   ],
   "rules": {
+    "no-var": "error",
+    "prettier/prettier": "error"
     // Aca puedes modificar alguna regla específica, por ejemplo:
     // "@typescript-eslint/explicit-function-return-type": "off",
   }
