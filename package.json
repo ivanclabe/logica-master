@@ -7,7 +7,9 @@
     "start": "npm run build && node build/index.js",
     "start:dev": "nodemon",
     "lint": "eslint ./src --exec .ts",
-    "lint:format": "eslint ./src --exec .ts --fix"
+    "lint:format": "eslint ./src --exec .ts --fix",
+    "prettier": "prettier 'src/**/*.ts'",
+    "prettier:fix": "prettier --write 'src/**/*.ts'"
   },
   "husky": {
     "hooks": {
@@ -15,7 +17,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts}": [
+    "src/**/*.ts": [
       "eslint --fix"
     ]
   },

@@ -10,10 +10,21 @@
     "prettier"
   ],
   "extends": [
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",  // agrega las reglas de prettier a eslint
-    "plugin:prettier/recommended" // agregar el plugin que integra eslint con prettier
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint"
   ],
+  // "extends": [
+  //   "eslint:recommended",
+  //   "plugin:@typescript-eslint/recommended",
+  //   "plugin:prettier/recommended", // agregar el plugin que integra eslint con prettier
+  //   "prettier/@typescript-eslint"  // agrega las reglas de prettier a eslint
+  // ],
   "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
   }
 }
