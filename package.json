@@ -8,8 +8,8 @@
     "start:dev": "nodemon",
     "lint": "eslint ./src --ext .js,.ts",
     "lint:format": "eslint ./src --ext .js,.ts --fix",
-    "prettier": "prettier ./",
-    "prettier:fix": "prettier --write 'src/**/*.ts'"
+    "clean": "rimraf dist/*",
+    "prettier": "prettier src/ --write"
   },
   "husky": {
     "hooks": {
@@ -26,11 +26,11 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "morgan": "~1.9.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
+    "@types/debug": "^4.1.5",
     "@types/express": "^4.17.11",
     "@types/http-errors": "^1.8.0",
     "@types/morgan": "^1.9.2",

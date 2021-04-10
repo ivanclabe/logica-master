@@ -11,4 +11,7 @@
     "resolveJsonModule": true,
     "typeRoots" : ["./node_modules/@types"]
   },
-}
+  "lib": ["es2015"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/bin" ,"**/*.spec.ts"]
+  }
