@@ -1,8 +1,8 @@
-import * as createError from 'http-errors';
-import * as express from 'express';
-import * as path from 'path';
-import * as cookieParser from 'cookie-parser';
-import * as logger from 'morgan';
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
 const app = express();
 

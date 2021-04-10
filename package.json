@@ -6,9 +6,9 @@
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "start:dev": "nodemon",
-    "lint": "eslint ./src --exec .ts",
-    "lint:format": "eslint ./src --exec .ts --fix",
-    "prettier": "prettier 'src/**/*.ts'",
+    "lint": "eslint ./src --ext .js,.ts",
+    "lint:format": "eslint ./src --ext .js,.ts --fix",
+    "prettier": "prettier ./",
     "prettier:fix": "prettier --write 'src/**/*.ts'"
   },
   "husky": {
