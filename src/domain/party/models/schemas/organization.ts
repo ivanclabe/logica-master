@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-import addressSchema from './address.schema';
-import { validateEmail, validatePhone } from '../../utils/validators';
+
+import addressSchema from './address';
 
 /**
  *
@@ -12,7 +12,7 @@ import { validateEmail, validatePhone } from '../../utils/validators';
  * en un proceso de negoco.
  * @returns {Schema}
  */
-export default new Schema(
+const organizationSchema: Schema = new Schema(
   {
     /**
      * Grupo con información sobre el nombre
@@ -34,12 +34,12 @@ export default new Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      validate: validateEmail,
+      // validate: validateEmail,
       required: [true, 'Email address is required']
     },
     phone: {
       type: String,
-      validate: validatePhone,
+      // validate: validatePhone,
       required: [true, 'User phone number required']
     },
     logo: String,
@@ -49,3 +49,5 @@ export default new Schema(
     _id: false
   }
 );
+
+export default organizationSchema;

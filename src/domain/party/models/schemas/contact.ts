@@ -1,5 +1,4 @@
 import { Schema } from 'mongoose';
-import { validateEmail, validatePhone } from '../../utils/validators';
 
 /**
  *
@@ -10,7 +9,7 @@ import { validateEmail, validatePhone } from '../../utils/validators';
  * sobre un contacto
  * @returns {Schema}
  */
-export default new Schema(
+const contactSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -22,12 +21,12 @@ export default new Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      validate: validateEmail,
+      // validate: validateEmail,
       required: [true, 'Email address is required']
     },
     phone: {
       type: String,
-      validate: validatePhone,
+      // validate: validatePhone,
       required: [true, 'User phone number required']
     },
     // Texto de forma libre que transmite información
@@ -39,3 +38,5 @@ export default new Schema(
     _id: false
   }
 );
+
+export default contactSchema;

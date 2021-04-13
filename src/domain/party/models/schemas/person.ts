@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-import adddressSchema from './address.schema';
-import { validateEmail, validatePhone } from '../../utils/validators';
+
+import adddressSchema from './address';
 
 /**
  *
@@ -11,7 +11,7 @@ import { validateEmail, validatePhone } from '../../utils/validators';
  * sobre una persona
  * @returns {Schema}
  */
-export default new Schema(
+const personSchema: Schema = new Schema(
   {
     name: {
       first: {
@@ -36,12 +36,12 @@ export default new Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      validate: validateEmail,
+      // validate: validateEmail,
       required: [true, 'Email address is required']
     },
     phone: {
       type: String,
-      validate: validatePhone,
+      // validate: validatePhone,
       required: [true, 'User phone number required']
     }
   },
@@ -49,3 +49,5 @@ export default new Schema(
     _id: false
   }
 );
+
+export default personSchema;
