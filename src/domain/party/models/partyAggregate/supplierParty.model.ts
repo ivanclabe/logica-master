@@ -1,6 +1,5 @@
-import { Schema } from 'mongoose';
-
-import organizationSchema from './organization';
+import PartyModel from './party.model';
+import { supplierSchema } from '../schemas';
 
 export const Supplier = PartyModel.discriminator(
   'SupplierParty',

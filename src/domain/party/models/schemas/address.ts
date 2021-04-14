@@ -18,10 +18,7 @@ const addressSchema: Schema = new Schema(
        * utilizar para poner todas las información de su
        * dirección.
        */
-      line: {
-        type: String,
-        required: true
-      }
+      line: { type: String, required: true }
     },
     city: {
       type: Schema.Types.ObjectId,

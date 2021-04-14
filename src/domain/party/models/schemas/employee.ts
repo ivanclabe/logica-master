@@ -13,10 +13,7 @@ const employeeSchema: Schema = new Schema({
     }
   ],
   birthday: Date,
-  role: {
-    type: Schema.Types.ObjectId,
-    ref: 'Role'
-  },
+  role: { type: Schema.Types.ObjectId, ref: 'Role' },
   avatar: String,
   jobTitle: String,
   contact: contactSchema,

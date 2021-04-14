@@ -11,7 +11,7 @@
     "prettier"
   ],
   "rules": {
-    "no-console": 1,
+    // "no-console": 1,
     "prettier/prettier": 2,
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off"
