@@ -1,6 +1,6 @@
-import { partySchema } from '../schemas';
-import { IParty } from './party.interface';
-import connect from '../../../../config/db.config';
+import { Schema } from 'mongoose';
+
+import connect from '../../../config/db.config';
 
 /**
  * Una modelo para describir una organización,
@@ -29,6 +29,6 @@ const partySchema: Schema = new Schema(
   }
 );
 
-const PartyModel = connect.model<IParty>('Party', partySchema);
+const PartyModel = connect.model('Party', partySchema);
 
 export default PartyModel;

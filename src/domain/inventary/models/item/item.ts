@@ -1,5 +1,7 @@
 import { Schema } from 'mongoose';
 
+import connect from '../../../../config/db.config';
+
 /**
  * Modelo para describir de un Item
  *
@@ -57,4 +59,4 @@ const itemSchema: Schema = new Schema(
   }
 );
 
-export default itemSchema;
+export const ItemModel = connect.model('Item', itemSchema);

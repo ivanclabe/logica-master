@@ -1,5 +1,7 @@
 import { Schema } from 'mongoose';
 
+import connect from '../../../../config/db.config';
+
 /**
  * Un esquema para definir un grupo
  * para los items
@@ -15,4 +17,4 @@ const itemGroupSchema: Schema = new Schema(
   }
 );
 
-export default itemGroupSchema;
+export const ItemGroupModel = connect.model('ItemGroup', itemGroupSchema);

@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 
-import { monetarySchema } from '../../schema/nested';
-import DocumentModel from './document.model';
+import DocumentModel from '../../../shared/discriminators/document';
+import { monetarySchema } from '../../../shared/subdocuments';
 
 const invoiceSchema: Schema = new Schema({
   invoiceCode: [
@@ -16,12 +16,6 @@ const invoiceSchema: Schema = new Schema({
       sequenceValue: { type: String, required: true }
     }
   ],
-  /** Terminal que emite el documento */
-  terminalParty: {
-    type: Schema.Types.ObjectId,
-    ref: 'TerminalParty',
-    required: true
-  },
   /** Vendedor que crea el documento */
   sellerParty: {
     type: Schema.Types.ObjectId,
@@ -33,21 +27,6 @@ const invoiceSchema: Schema = new Schema({
     ref: 'CustomerParty',
     required: true
   },
-  /** Quien despacha los items */
-  despatchParty: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'EmployeeParty',
-      required: true
-    }
-  ],
-  /** Quien lleva los items */
-  transportParty: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'EmployeeParty'
-    }
-  ],
   /** Medios de pago previstos */
   paymentMeans: {},
   /** Un pago prepago */
@@ -76,13 +55,6 @@ const invoiceSchema: Schema = new Schema({
       ref: 'TaxTotal'
     }
   ],
-  /** La retención de impuestos total */
-  withholdingTaxtotal: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'TaxTotal'
-    }
-  ],
   /**
    * El monto total pagadero en la factura, incluidas
    * las asignaciones, los cargos y los impuestos.
@@ -99,4 +71,7 @@ const invoiceSchema: Schema = new Schema({
   }
 });
 
-export default invoiceSchema;
+export const InvoiceModel = DocumentModel.discriminator(
+  'Invoice',
+  invoiceSchema
+);

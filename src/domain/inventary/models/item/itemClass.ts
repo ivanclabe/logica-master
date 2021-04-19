@@ -1,5 +1,7 @@
 import { Schema } from 'mongoose';
 
+import connect from '../../../../config/db.config';
+
 /**
  * Un esquema para definir una clasificacion
  * para los items
@@ -15,4 +17,4 @@ const itemClassSchema: Schema = new Schema(
   }
 );
 
-export default itemClassSchema;
+export const ItemClassModel = connect.model('ItemClass', itemClassSchema);

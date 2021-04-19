@@ -1,12 +1,14 @@
 import { Schema } from 'mongoose';
 
+import connect from '../../../../config/db.config';
+
 /**
  * Un esquema para definir un propiedades
  * para los items
  *
  * @name ItemProperty
  */
-const itemGroupSchema: Schema = new Schema(
+const itemPropertySchema: Schema = new Schema(
   {
     propertyName: { type: String, required: true, trim: true },
     propertyType: {
@@ -20,4 +22,7 @@ const itemGroupSchema: Schema = new Schema(
   }
 );
 
-export default itemGroupSchema;
+export const ItemPropertyModel = connect.model(
+  'ItemProperty',
+  itemPropertySchema
+);

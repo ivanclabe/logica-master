@@ -1,5 +1,7 @@
 import { Schema } from 'mongoose';
 
+import connect from '../../../../config/db.config';
+
 /**
  * Modelo para describir de una Categoria para items
  * @name ItemCategory
@@ -16,4 +18,7 @@ const itemCategorySchema: Schema = new Schema(
   }
 );
 
-export default itemCategorySchema;
+export const ItemCategoryModel = connect.model(
+  'ItemCategory',
+  itemCategorySchema
+);
