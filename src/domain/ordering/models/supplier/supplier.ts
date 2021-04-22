@@ -1,10 +1,13 @@
 import { Schema } from 'mongoose';
 
-import contactSchema from './contact';
-import organizationSchema from './organization';
+import PartyModel from '../../../shared/discriminators/party';
+import {
+  contactSchema,
+  organizationSchema
+} from '../../../shared/subdocuments';
 
 /** Customer Party */
-const customerSchema: Schema = new Schema({
+const supplierSchema: Schema = new Schema({
   party: organizationSchema,
   /**
    * Grupo de información tributarias del
@@ -25,4 +28,7 @@ const customerSchema: Schema = new Schema({
   buyerContact: contactSchema
 });
 
-export default customerSchema;
+export const SupplierPartyModel = PartyModel.discriminator(
+  'SupplierParty',
+  supplierSchema
+);

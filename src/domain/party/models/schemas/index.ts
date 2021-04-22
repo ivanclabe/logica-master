@@ -1,9 +1,0 @@
-export { default as addressSchema } from './address';
-export { default as contactSchema } from './contact';
-export { default as customerSchema } from './customer';
-export { default as employeeSchema } from './employee';
-export { default as organizationSchema } from './organization';
-export { default as partySchema } from './party';
-export { default as personSchema } from './person';
-export { default as supplierSchema } from './supplier';
-export { default as terminalSchema } from './terminal';
