@@ -9,47 +9,74 @@ import { Schema, Types } from 'mongoose';
  * sobre un conjunto de cantidades
  * @returns {Schema}
  */
-export default new Schema(
+export const priceSchema: Schema = new Schema(
   {
     /**
      * Cantidad Recibida
      */
-    receivedQuantity: { type: Types.Decimal128, min: 0 },
+    receivedQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Cantidad Ordenada
      */
-    onOrderQuantity: { type: Types.Decimal128, min: 0 },
+    onOrderQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Cantidad Enviada
      */
-    shippedQuantity: { type: Types.Decimal128, min: 0 },
+    shippedQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Cantidad asignada
      */
-    allocatedQuantity: { type: Types.Decimal128, min: 0 },
+    allocatedQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Cantidad Pedido de vuelta
      */
-    backOrderedQuantity: { type: Types.Decimal128, min: 0 },
+    backOrderedQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Nivel Inicial
      */
-    initLevelQuantity: { type: Types.Decimal128, min: 0 },
+    initLevelQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Cantidad En Fisico
      * onHand = initLevel + received - shipped
      */
-    onHandQuantity: { type: Types.Decimal128, min: 0 },
+    onHandQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Cantidad Disponible
      * available = initLevel + received - shipped - allocated
      */
-    availableQuantity: { type: Types.Decimal128, min: 0 },
+    availableQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    },
     /**
      * Nivel Actual
      * currentLevel = initLevel + onOrder + received - shipped - allocated - backOrdered
      */
-    currentLevelQuantity: { type: Types.Decimal128, min: 0 }
+    currentLevelQuantity: {
+      type: Types.Decimal128,
+      min: 0
+    }
   },
   {
     _id: false

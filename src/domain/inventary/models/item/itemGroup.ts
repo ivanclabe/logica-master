@@ -10,7 +10,11 @@ import connect from '../../../../config/db.config';
  */
 const itemGroupSchema: Schema = new Schema(
   {
-    groupName: { type: String, required: true, trim: true }
+    groupName: {
+      type: String,
+      trim: true,
+      required: true
+    }
   },
   {
     collection: 'itemsGroups'

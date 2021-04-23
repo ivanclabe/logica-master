@@ -1,6 +1,9 @@
-export { default as addressSchema } from './address';
-export { default as contactSchema } from './contact';
-export { default as monetarySchema } from './monetary';
-export { default as organizationSchema } from './organization';
-export { default as priceSchema } from './price';
-export { default as quantitySchema } from './quantity';
+export * as addressSchema from './address';
+export * as allowanceChargeSchema from './allowanceCharge';
+export * as contactSchema from './contact';
+export * as monetarySchema from './monetary';
+export * as organizationSchema from './organization';
+export * as paymentSchema from './payment';
+export * as priceSchema from './price';
+export * as quantitySchema from './quantity';
+export * as taxSchema from './tax';

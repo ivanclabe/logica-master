@@ -10,7 +10,11 @@ import connect from '../../../../config/db.config';
  */
 const itemClassSchema: Schema = new Schema(
   {
-    className: { type: String, required: true, trim: true }
+    className: {
+      type: String,
+      trim: true,
+      required: true
+    }
   },
   {
     collection: 'itemsClasses'

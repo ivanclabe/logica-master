@@ -9,7 +9,7 @@ import { Types, Schema } from 'mongoose';
  * sobre un precio
  * @returns {Schema}
  */
-export default new Schema(
+export const monetarySchema: Schema = new Schema(
   {
     /**
      * El monto monetario de una línea de transacción

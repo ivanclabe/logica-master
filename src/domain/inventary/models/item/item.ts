@@ -32,12 +32,18 @@ const itemSchema: Schema = new Schema(
      */
     packQuantity: Number,
     sellersItemIdentification: { sellersItemCode: String },
-    standardItemIdentification: { standardItemCode: String },
+    standardItemIdentification: [{ standardItemCode: String }],
     keyword: [String],
     brandName: [String],
     modelName: [String],
-    itemGroup: { type: Schema.Types.ObjectId, ref: 'ItemGroup' },
-    itemClass: { type: Schema.Types.ObjectId, ref: 'ItemClass' },
+    itemGroup: {
+      type: Schema.Types.ObjectId,
+      ref: 'ItemGroup'
+    },
+    itemClass: {
+      type: Schema.Types.ObjectId,
+      ref: 'ItemClass'
+    },
     itemCategories: [
       {
         type: Schema.Types.ObjectId,

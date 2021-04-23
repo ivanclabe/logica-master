@@ -1,12 +1,7 @@
 import { Schema, Types } from 'mongoose';
 
-import { priceSchema } from '../subdocuments';
+import { priceSchema, allowanceChargeSchema, taxSchema } from '../subdocuments';
 import connect from '../../../config/db.config';
-
-const options = {
-  discriminatorKey: '__t',
-  collection: 'documentsLines'
-};
 
 const documentLineSchema: Schema = new Schema(
   {
@@ -36,29 +31,22 @@ const documentLineSchema: Schema = new Schema(
      * Una asignación o cargo asociado con esta línea
      * de factura
      */
-    allowanceCharge: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Charge'
-      }
-    ],
+    allowanceCharge: [allowanceChargeSchema],
     /**
      * Un monto total de impuestos de un tipo particular
      * aplicable a esta línea de factura.
      */
-    taxTotal: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'TaxTotal'
-      }
-    ],
+    taxTotal: [taxSchema],
     /**
      * El precio del artículo o servicio asociado con esta
      * línea de factura.
      */
     price: { type: priceSchema, required: true }
   },
-  options
+  {
+    discriminatorKey: '__t',
+    collection: 'documentsLines'
+  }
 );
 
 export default connect.model('DocumentLine', documentLineSchema);

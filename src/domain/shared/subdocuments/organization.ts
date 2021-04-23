@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import addressSchema from './address';
+import { addressSchema } from './address';
 
 /**
  *
@@ -12,7 +12,7 @@ import addressSchema from './address';
  * en un proceso de negoco.
  * @returns {Schema}
  */
-const organizationSchema: Schema = new Schema(
+export const OrganizationSchema: Schema = new Schema(
   {
     /**
      * Grupo con información sobre el nombre
@@ -49,5 +49,3 @@ const organizationSchema: Schema = new Schema(
     _id: false
   }
 );
-
-export default organizationSchema;

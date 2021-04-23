@@ -10,7 +10,7 @@ import { Schema } from 'mongoose';
  * sobre un contacto
  * @returns {Schema}
  */
-export default new Schema(
+export const contactSchema: Schema = new Schema(
   {
     name: {
       type: String,

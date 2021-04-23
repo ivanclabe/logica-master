@@ -1,7 +1,12 @@
 import { Schema } from 'mongoose';
 
 import DocumentModel from '../../../shared/discriminators/document';
-import { monetarySchema } from '../../../shared/subdocuments';
+import {
+  allowanceChargeSchema,
+  monetarySchema,
+  paymentSchema,
+  taxSchema
+} from '../../../shared/subdocuments';
 
 const invoiceSchema: Schema = new Schema({
   invoiceCode: [
@@ -30,31 +35,16 @@ const invoiceSchema: Schema = new Schema({
   /** Medios de pago previstos */
   paymentMeans: {},
   /** Un pago prepago */
-  prepaidPayment: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Payment'
-    }
-  ],
+  prepaidPayment: [paymentSchema],
   /**
    * Un descuento o cargo que se aplica a un componente
    * del precio.
    */
-  allowanceCharge: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Charge'
-    }
-  ],
+  allowanceCharge: [allowanceChargeSchema],
   /**
    * El monto total de un tipo específico de impuesto.
    */
-  taxTotal: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'TaxTotal'
-    }
-  ],
+  taxTotal: [taxSchema],
   /**
    * El monto total pagadero en la factura, incluidas
    * las asignaciones, los cargos y los impuestos.
@@ -64,11 +54,13 @@ const invoiceSchema: Schema = new Schema({
     required: true
   },
   /** Describe un artículo de factura. */
-  invoiceLine: {
-    type: Schema.Types.ObjectId,
-    ref: 'InvoiceLine',
-    required: true
-  }
+  invoiceLine: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'InvoiceLine',
+      required: true
+    }
+  ]
 });
 
 export const InvoiceModel = DocumentModel.discriminator(
