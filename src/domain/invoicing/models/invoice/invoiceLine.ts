@@ -19,8 +19,7 @@ const invoiceLineSchema: Schema = new Schema({
       lineStatus: String,
       OrderReference: {
         type: Schema.Types.ObjectId,
-        ref: 'Order',
-        required: true
+        ref: 'Order'
       }
     }
   ]

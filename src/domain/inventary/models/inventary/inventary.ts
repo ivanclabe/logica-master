@@ -12,7 +12,14 @@ const inventarySchema: Schema = new Schema(
       ref: 'Period',
       required: true
     },
-    note: [String]
+    note: [String],
+    inventaryLine: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'InventaryLine',
+        required: true
+      }
+    ]
   },
   {
     collection: 'inventaries'

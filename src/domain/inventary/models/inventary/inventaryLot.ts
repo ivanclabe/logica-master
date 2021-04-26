@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { quantitySchema } from '../../../shared/subdocuments';
+import { quantity } from '../../../shared/subdocuments';
 import connect from '../../../../config/db.config';
 
 /**
@@ -8,15 +8,15 @@ import connect from '../../../../config/db.config';
  */
 const inventaryLotSchema: Schema = new Schema(
   {
-    inventary: {
+    inventaryLine: {
       type: Schema.Types.ObjectId,
-      ref: 'Inventary',
+      ref: 'InventaryLine',
       required: true
     },
     lotName: { type: String, trim: true, required: true },
     dueDate: Date,
     note: [String],
-    quantity: quantitySchema
+    quantity: quantity.schema
   },
   {
     collection: 'inventariesLots'

@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { addressSchema, contactSchema } from '../subdocuments';
+import { address, contact } from '../subdocuments';
 import connect from '../../../config/db.config';
 
 /**
@@ -15,16 +15,16 @@ const partySchema: Schema = new Schema(
     /** Identificador para este party */
     partyIdentification: [
       {
-        name: {
+        identificationName: {
           type: Schema.Types.ObjectId,
           ref: 'OperSetting',
           required: true
         },
-        value: { type: String, trim: true, required: true }
+        identificationCode: { type: String, trim: true, required: true }
       }
     ],
     location: {
-      address: addressSchema,
+      address: address.schema,
       description: [String]
     },
     email: {
@@ -33,7 +33,7 @@ const partySchema: Schema = new Schema(
       lowercase: true
       // validate: validateEmail,
     },
-    contact: contactSchema
+    contact: contact.schema
   },
   {
     discriminatorKey: '__t',

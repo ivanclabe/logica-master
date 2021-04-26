@@ -10,6 +10,18 @@ import connect from '../../../../config/db.config';
  */
 const itemSchema: Schema = new Schema(
   {
+    itemIdentification: [
+      {
+        /** Tipo de codigo de factura */
+        itemIdentificationType: {
+          type: Schema.Types.ObjectId,
+          ref: 'Sequence',
+          required: true
+        },
+        /** Indica el codigo de factura */
+        itemIdentificationCode: { type: String, required: true }
+      }
+    ],
     longName: [
       {
         type: String,
@@ -31,19 +43,22 @@ const itemSchema: Schema = new Schema(
      * El número de subunidades que componen este elemento.
      */
     packQuantity: Number,
-    sellersItemIdentification: { sellersItemCode: String },
     standardItemIdentification: [{ standardItemCode: String }],
     keyword: [String],
     brandName: [String],
     modelName: [String],
-    itemGroup: {
-      type: Schema.Types.ObjectId,
-      ref: 'ItemGroup'
-    },
-    itemClass: {
-      type: Schema.Types.ObjectId,
-      ref: 'ItemClass'
-    },
+    itemGroup: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'ItemGroup'
+      }
+    ],
+    itemClass: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'ItemClass'
+      }
+    ],
     itemCategories: [
       {
         type: Schema.Types.ObjectId,

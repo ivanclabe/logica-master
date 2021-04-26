@@ -2,10 +2,10 @@ import { Schema } from 'mongoose';
 
 import DocumentModel from '../../../shared/discriminators/document';
 import {
-  allowanceChargeSchema,
-  monetarySchema,
-  paymentSchema,
-  taxSchema
+  allowanceCharge,
+  monetary,
+  payment,
+  tax
 } from '../../../shared/subdocuments';
 
 const invoiceSchema: Schema = new Schema({
@@ -35,22 +35,22 @@ const invoiceSchema: Schema = new Schema({
   /** Medios de pago previstos */
   paymentMeans: {},
   /** Un pago prepago */
-  prepaidPayment: [paymentSchema],
+  prepaidPayment: [payment.schema],
   /**
    * Un descuento o cargo que se aplica a un componente
    * del precio.
    */
-  allowanceCharge: [allowanceChargeSchema],
+  allowanceCharge: [allowanceCharge.schema],
   /**
    * El monto total de un tipo específico de impuesto.
    */
-  taxTotal: [taxSchema],
+  taxTotal: [tax.schema],
   /**
    * El monto total pagadero en la factura, incluidas
    * las asignaciones, los cargos y los impuestos.
    */
   legalMonetaryTotal: {
-    type: monetarySchema,
+    type: monetary.schema,
     required: true
   },
   /** Describe un artículo de factura. */

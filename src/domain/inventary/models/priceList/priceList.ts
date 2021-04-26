@@ -7,19 +7,20 @@ import connect from '../../../../config/db.config';
  */
 const pricelistSchema: Schema = new Schema(
   {
-    listName: {
-      type: String,
-      trim: true,
-      required: true
-    },
+    listName: { type: String, required: true },
     validPeriod: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Period',
-        required: true
+        ref: 'Period'
       }
     ],
-    priceListLine: [
+    priceType: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'PriceType'
+      }
+    ],
+    listLine: [
       {
         type: Schema.Types.ObjectId,
         ref: 'priceListLine',
@@ -28,7 +29,7 @@ const pricelistSchema: Schema = new Schema(
     ]
   },
   {
-    collection: 'pricesLits'
+    collection: 'pricesLists'
   }
 );
 

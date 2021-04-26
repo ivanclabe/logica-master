@@ -5,7 +5,7 @@ import { Schema, Types } from 'mongoose';
  */
 export const schema: Schema = new Schema(
   {
-    unitCode: { type: String, default: 'COP' },
+    unitCode: { type: String, default: '' },
     value: {
       type: Types.Decimal128,
       default: 0

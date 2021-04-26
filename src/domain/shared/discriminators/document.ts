@@ -22,7 +22,7 @@ const documentSchema = new Schema(
       ref: 'OperSetting',
       required: true
     },
-    periods: [
+    documentPeriods: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Period',

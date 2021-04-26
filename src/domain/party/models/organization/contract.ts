@@ -1,5 +1,6 @@
 import { Schema, Types } from 'mongoose';
 
+import { amountType } from '../../../shared/types';
 import connect from '../../../../config/db.config';
 
 export const contractSchema: Schema = new Schema(
@@ -21,9 +22,9 @@ export const contractSchema: Schema = new Schema(
     ],
     currencyCode: { type: String },
     /** El monto de esta asignado a este contrato. */
-    baseAmount: { type: Types.Decimal128, default: 0 },
+    baseAmount: { type: amountType, required: true },
     /** El monto consumido de este contrato */
-    amount: { type: Types.Decimal128, default: 0 },
+    amount: { type: amountType, required: true },
     /**
      * La parte que emitió el documento de referencia.
      */

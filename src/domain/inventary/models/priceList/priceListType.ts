@@ -7,11 +7,7 @@ import connect from '../../../../config/db.config';
  */
 const priceTypeSchema: Schema = new Schema(
   {
-    listName: {
-      type: String,
-      trim: true,
-      required: true
-    }
+    listName: { type: String, required: true }
   },
   {
     collection: 'pricesTypes'

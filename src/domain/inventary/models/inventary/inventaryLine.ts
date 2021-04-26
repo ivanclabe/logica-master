@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { quantitySchema } from '../../../shared/subdocuments';
+import { quantity } from '../../../shared/subdocuments';
 import connect from '../../../../config/db.config';
 
 /**
@@ -18,7 +18,17 @@ const inventaryLineSchema: Schema = new Schema(
       ref: 'Item',
       required: true
     },
-    quantity: quantitySchema
+    quantity: {
+      type: quantity.schema,
+      required: true
+    },
+    inventariesLots: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'InventaryLot',
+        required: true
+      }
+    ]
   },
   {
     collection: 'inventariesLines'

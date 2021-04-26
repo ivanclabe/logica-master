@@ -1,6 +1,7 @@
 import { Schema, Types } from 'mongoose';
 
-import { priceSchema, allowanceChargeSchema, taxSchema } from '../subdocuments';
+import { price, allowanceCharge, tax } from '../subdocuments';
+import { amountType, quantityType } from '../types';
 import connect from '../../../config/db.config';
 
 const documentLineSchema: Schema = new Schema(
@@ -13,8 +14,7 @@ const documentLineSchema: Schema = new Schema(
     },
     note: [String],
     quantity: {
-      type: Types.Decimal128,
-      min: 0,
+      type: quantityType.schema,
       required: true
     },
     /**
@@ -23,25 +23,24 @@ const documentLineSchema: Schema = new Schema(
      * neto de impuestos.
      */
     lineExtensionAmount: {
-      type: Types.Decimal128,
-      min: 0,
+      type: amountType.schema,
       required: true
     },
     /**
      * Una asignación o cargo asociado con esta línea
      * de factura
      */
-    allowanceCharge: [allowanceChargeSchema],
+    allowanceCharge: [allowanceCharge.schema],
     /**
      * Un monto total de impuestos de un tipo particular
      * aplicable a esta línea de factura.
      */
-    taxTotal: [taxSchema],
+    taxTotal: [tax.schema],
     /**
      * El precio del artículo o servicio asociado con esta
      * línea de factura.
      */
-    price: { type: priceSchema, required: true }
+    price: { type: price.schema, required: true }
   },
   {
     discriminatorKey: '__t',

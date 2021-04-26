@@ -1,6 +1,7 @@
-import { Schema, Types } from 'mongoose';
+import { Schema } from 'mongoose';
 
-import { allowanceChargeSchema } from '../../../shared/subdocuments';
+import { allowanceCharge } from '../../../shared/subdocuments';
+import { amountType } from '../../../shared/types';
 import connect from '../../../../config/db.config';
 
 const priceListLineSchema: Schema = new Schema({
@@ -15,16 +16,16 @@ const priceListLineSchema: Schema = new Schema({
     required: true
   },
   baseAmount: {
-    type: Types.Decimal128,
+    type: amountType.schema,
     required: true
   },
   /**
    * Una asignación o cargo asociado con este
    * precio.
    */
-  allowanceCharges: [allowanceChargeSchema],
+  allowanceCharges: [allowanceCharge.schema],
   amount: {
-    type: Types.Decimal128,
+    type: amountType.schema,
     required: true
   }
 });

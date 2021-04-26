@@ -15,9 +15,7 @@ const operationalResourceSchema = new Schema(
       required: true
     },
     description: String,
-    operationalCode: String,
-    active: { type: Boolean, default: true },
-    deleted: { type: Boolean, default: false }
+    operationalCode: String
   },
   {
     collection: 'operationalsResources',

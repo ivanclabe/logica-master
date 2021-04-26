@@ -6,3 +6,4 @@ export * as payment from './payment';
 export * as price from './price';
 export * as quantity from './quantity';
 export * as tax from './tax';
+export * as period from './period';

@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 import connect from '../../../../config/db.config';
 
-export const periodSchema: Schema = new Schema(
+const periodSchema: Schema = new Schema(
   {
     periodCode: {
       type: String,
