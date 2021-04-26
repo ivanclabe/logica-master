@@ -9,49 +9,49 @@ import { Schema, Types } from 'mongoose';
  * sobre un conjunto de cantidades
  * @returns {Schema}
  */
-export const priceSchema: Schema = new Schema(
+export const schema: Schema = new Schema(
   {
     /**
      * Cantidad Recibida
      */
     receivedQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Cantidad Ordenada
      */
     onOrderQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Cantidad Enviada
      */
     shippedQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Cantidad asignada
      */
     allocatedQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Cantidad Pedido de vuelta
      */
     backOrderedQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Nivel Inicial
      */
     initLevelQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Cantidad En Fisico
@@ -59,7 +59,7 @@ export const priceSchema: Schema = new Schema(
      */
     onHandQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Cantidad Disponible
@@ -67,7 +67,7 @@ export const priceSchema: Schema = new Schema(
      */
     availableQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     },
     /**
      * Nivel Actual
@@ -75,7 +75,7 @@ export const priceSchema: Schema = new Schema(
      */
     currentLevelQuantity: {
       type: Types.Decimal128,
-      min: 0
+      default: 0
     }
   },
   {

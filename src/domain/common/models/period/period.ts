@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 import connect from '../../../../config/db.config';
 
-export const contractSchema: Schema = new Schema(
+export const periodSchema: Schema = new Schema(
   {
     periodCode: {
       type: String,
@@ -11,7 +11,7 @@ export const contractSchema: Schema = new Schema(
     },
     startDate: {
       type: Date,
-      required: true
+      default: Date.now
     },
     endDate: {
       type: Date,
@@ -24,3 +24,5 @@ export const contractSchema: Schema = new Schema(
     collection: 'period'
   }
 );
+
+export const PeriodModel = connect.model('Period', periodSchema);

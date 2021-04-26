@@ -1,1 +1,1 @@
-export * as ContractAggregate from './contract';
+export * as PeriodAggregate from './period';

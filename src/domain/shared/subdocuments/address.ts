@@ -9,7 +9,7 @@ import { Schema } from 'mongoose';
  * sobre una dirección
  * @returns {Schema}
  */
-export const addressSchema: Schema = new Schema(
+export const schema: Schema = new Schema(
   {
     streetName: String,
     addressLine: {

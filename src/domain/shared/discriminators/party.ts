@@ -1,5 +1,6 @@
 import { Schema } from 'mongoose';
 
+import { addressSchema, contactSchema } from '../subdocuments';
 import connect from '../../../config/db.config';
 
 /**
@@ -21,7 +22,18 @@ const partySchema: Schema = new Schema(
         },
         value: { type: String, trim: true, required: true }
       }
-    ]
+    ],
+    location: {
+      address: addressSchema,
+      description: [String]
+    },
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true
+      // validate: validateEmail,
+    },
+    contact: contactSchema
   },
   {
     discriminatorKey: '__t',

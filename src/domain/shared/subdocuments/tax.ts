@@ -1,23 +1,24 @@
 import { Schema, Types } from 'mongoose';
 
-export const taxSubtotalSchema: Schema = new Schema({
+import { amountType } from '../types';
+
+const taxSubtotalSchema: Schema = new Schema({
   /**
    * El importe neto al que se aplica el porcentaje
    * (tasa) de impuestos para calcular el importe del
    * impuesto.
    */
   taxableAmount: {
-    type: Types.Decimal128,
-    min: 0
+    type: amountType.schema,
+    required: true
   },
   /**
    * Base Imponible sobre la que se calcula el valor
    * del tributo
    */
   taxAmount: {
-    type: Types.Decimal128,
-    default: 0,
-    min: 0
+    type: amountType.schema,
+    required: true
   },
   percent: {
     type: Number,
@@ -37,7 +38,7 @@ export const taxSubtotalSchema: Schema = new Schema({
  * @name Tax
  * @return {object} - Returna el modelo City
  */
-export const taxSchema: Schema = new Schema({
+export const schema: Schema = new Schema({
   /**
    * Lista de subtotales cuya suma es igual al monto
    * total de impuestos para un esquema de impuestos
@@ -52,6 +53,6 @@ export const taxSchema: Schema = new Schema({
  * los subtotales de impuestos para cada categoría de
  * impuestos dentro del esquema de impuestos.
  * */
-taxSchema.virtual('taxAmount').get(function () {
+schema.virtual('taxAmount').get(function () {
   return 0;
 });

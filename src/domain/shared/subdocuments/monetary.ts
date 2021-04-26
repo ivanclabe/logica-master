@@ -1,15 +1,14 @@
-import { Types, Schema } from 'mongoose';
+import { Schema } from 'mongoose';
+
+import { amountType } from '../types';
 
 /**
- *
- * Esquema para describir una precio
- *
  * @name monetarySchema
  * @description Esquema para describir información
  * sobre un precio
  * @returns {Schema}
  */
-export const monetarySchema: Schema = new Schema(
+export const schema: Schema = new Schema(
   {
     /**
      * El monto monetario de una línea de transacción
@@ -18,16 +17,16 @@ export const monetarySchema: Schema = new Schema(
      * redondeo aplicable.
      */
     lineExtensionAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto monetario de una línea de transacción
      * extendida, sin incluir impuestos.
      */
     taxExclusiveAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto monetario incluidos los impuestos;
@@ -35,29 +34,29 @@ export const monetarySchema: Schema = new Schema(
      * prepaga.
      */
     taxInclusiveAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto monetario total de todas las asignaciones.
      */
     allowanceTotalAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto monetario total de todos los cargos.
      */
     chargeTotalAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto monetario prepago total.
      */
     prepaidAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto de redondeo (positivo o negativo)
@@ -65,15 +64,14 @@ export const monetarySchema: Schema = new Schema(
      * de línea.
      */
     payableRoundingAmount: {
-      type: Types.Decimal128,
-      min: 0
+      type: amountType.schema,
+      required: true
     },
     /**
      * El monto del total monetario a pagar.
      */
     payableAmount: {
-      type: Types.Decimal128,
-      min: 0,
+      type: amountType.schema,
       required: true
     }
   },

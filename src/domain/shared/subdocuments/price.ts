@@ -1,4 +1,6 @@
-import { Types, Schema } from 'mongoose';
+import { Schema } from 'mongoose';
+
+import { amountType } from '../types';
 
 /**
  *
@@ -9,10 +11,10 @@ import { Types, Schema } from 'mongoose';
  * sobre un precio
  * @returns {Schema}
  */
-export const priceSchema: Schema = new Schema(
+export const schema: Schema = new Schema(
   {
     amount: {
-      type: Types.Decimal128,
+      type: amountType.schema,
       required: true
     },
     priceList: {

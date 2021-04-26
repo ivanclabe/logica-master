@@ -1,10 +1,12 @@
-import { Schema, Types } from 'mongoose';
+import { Schema } from 'mongoose';
+
+import { amountType } from '../types';
 
 /**
  * @name AllowanceCharge
  * @return {object} - Returna el modelo City
  */
-export const allowanceChargeSchema: Schema = new Schema({
+export const schema: Schema = new Schema({
   chargeId: {
     type: String,
     required: true
@@ -33,19 +35,16 @@ export const allowanceChargeSchema: Schema = new Schema({
     min: 0
   },
   amount: {
-    type: Types.Decimal128,
-    required: true,
-    default: 0,
-    min: 0
+    type: amountType.schema,
+    required: true
   },
   /**
    * El monto monetario al que se aplica el factor multiplicador
    * al calcular el monto de esta asignación o cargo.
    */
   baseAmount: {
-    type: Types.Decimal128,
-    default: 0,
-    min: 0
+    type: amountType.schema,
+    required: true
   },
   /**
    * La asignación o cargo por artículo; la asignación o cargo
@@ -54,8 +53,5 @@ export const allowanceChargeSchema: Schema = new Schema({
    * transacción individual o por el número total de artículos
    * en el documento, según el contexto en el que aparece.
    */
-  perUnitAmount: {
-    type: Types.Decimal128,
-    min: 0
-  }
+  perUnitAmount: amountType.schema
 });

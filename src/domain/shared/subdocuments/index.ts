@@ -1,9 +1,8 @@
-export * as addressSchema from './address';
-export * as allowanceChargeSchema from './allowanceCharge';
-export * as contactSchema from './contact';
-export * as monetarySchema from './monetary';
-export * as organizationSchema from './organization';
-export * as paymentSchema from './payment';
-export * as priceSchema from './price';
-export * as quantitySchema from './quantity';
-export * as taxSchema from './tax';
+export * as address from './address';
+export * as allowanceCharge from './allowanceCharge';
+export * as contact from './contact';
+export * as monetary from './monetary';
+export * as payment from './payment';
+export * as price from './price';
+export * as quantity from './quantity';
+export * as tax from './tax';

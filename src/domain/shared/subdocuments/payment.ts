@@ -1,22 +1,24 @@
-import { Schema, Types } from 'mongoose';
+import { Schema } from 'mongoose';
+
+import { amountType } from '../types';
 
 /**
  * Esquema que describe una ciudad
  * @name Payment
  * @return {object} - Returna el modelo City
  */
-export const paymentSchema: Schema = new Schema({
+export const schema: Schema = new Schema({
   paymentId: String,
-  /** El monto de este pago. */
-  paidAmount: {
-    type: Types.Decimal128,
-    min: 0
-  },
   /**
    * La fecha en la que se realizó este pago.
    */
   paidDate: {
     type: Date,
+    required: true
+  },
+  /** El monto de este pago. */
+  paidAmount: {
+    type: amountType.schema,
     required: true
   }
 });
