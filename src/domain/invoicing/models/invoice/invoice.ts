@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import DocumentModel from '../../../shared/discriminators/document';
+import { DocumentModel } from '../../../shared/discriminators/document';
 import {
   allowanceCharge,
   monetary,

@@ -36,11 +36,9 @@ const partySchema: Schema = new Schema(
     contact: contact.schema
   },
   {
-    discriminatorKey: '__t',
-    collection: 'parties'
+    collection: 'parties',
+    discriminatorKey: '__t'
   }
 );
 
-const PartyModel = connect.model('Party', partySchema);
-
-export default PartyModel;
+export const PartyModel = connect.model('Party', partySchema);

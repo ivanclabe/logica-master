@@ -6,36 +6,34 @@ import connect from '../../../config/db.config';
 /**
  * Describe un tipo de codigo
  *
- * @name Sequence
- * @extends BaseSchema
+ * @name identifierSchema
  * @return {mongoose.Model}
  */
-const sequenceSchema: Schema = new Schema(
+const identifierSchema: Schema = new Schema(
   {
-    sequenceName: {
+    identifierName: {
       type: String,
       trim: true,
       required: true
     },
-    sequencePrefix: { type: String, trim: true },
+    identifierCode: String,
+    prefix: String,
     numeration: {
       startCode: { type: Number, required: true },
       endCode: { type: Number, required: true },
       currentCode: Number
     },
     description: [String],
-    validPeriod: [period.schema],
-    sequence: { type: Boolean, default: false },
-    codeProperties: [
-      {
-        propertyName: String,
-        propertyValue: String
-      }
-    ]
+    mainIdentifier: { type: Boolean, default: false },
+    validPeriod: [period.schema]
   },
   {
-    collection: 'sequences'
+    collection: 'sequences_identifiers',
+    discriminatorKey: '__t'
   }
 );
 
-export default connect.model('Sequence', sequenceSchema);
+export const SequenceIdentifierModel = connect.model(
+  'SequenceIdentifier',
+  identifierSchema
+);

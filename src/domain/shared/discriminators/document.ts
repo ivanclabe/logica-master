@@ -42,4 +42,4 @@ const documentSchema = new Schema(
   }
 );
 
-export default connect.model('Document', documentSchema);
+export const DocumentModel = connect.model('Document', documentSchema);

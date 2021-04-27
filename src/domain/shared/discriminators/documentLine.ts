@@ -43,9 +43,12 @@ const documentLineSchema: Schema = new Schema(
     price: { type: price.schema, required: true }
   },
   {
-    discriminatorKey: '__t',
-    collection: 'documentsLines'
+    collection: 'documents_lines',
+    discriminatorKey: '__t'
   }
 );
 
-export default connect.model('DocumentLine', documentLineSchema);
+export const DocumentLineModel = connect.model(
+  'DocumentLine',
+  documentLineSchema
+);

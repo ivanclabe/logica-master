@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import DocumentLineModel from '../../../shared/discriminators/documentLine';
+import { DocumentLineModel } from '../../../shared/discriminators/documentLine';
 
 const invoiceLineSchema: Schema = new Schema({
   /**

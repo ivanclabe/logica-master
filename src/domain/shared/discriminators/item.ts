@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import connect from '../../../../config/db.config';
+import connect from '../../../config/db.config';
 
 /**
  * Modelo para describir de un Item
@@ -25,10 +25,15 @@ const itemSchema: Schema = new Schema(
       }
     ],
     description: [String],
+    /**
+     * La unidad de cantidad de embalaje;
+     * El número de subunidades que componen este elemento.
+     */
     keyword: [String]
   },
   {
-    collection: 'items'
+    collection: 'items',
+    discriminatorKey: '__t'
   }
 );
 
