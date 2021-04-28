@@ -10,18 +10,11 @@ import connect from '../../../config/db.config';
  */
 const itemSchema: Schema = new Schema(
   {
-    longName: [
+    itemName: [
       {
         type: String,
         trim: true,
-        required: [true, 'Name field is required']
-      }
-    ],
-    shortName: [
-      {
-        type: String,
-        trim: true,
-        required: [true, 'Name field is required']
+        required: true
       }
     ],
     description: [String],
