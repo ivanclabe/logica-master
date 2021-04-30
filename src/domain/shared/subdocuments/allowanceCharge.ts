@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { amountType } from '../types';
+import { SS } from '../types';
 
 /**
  * @name AllowanceCharge

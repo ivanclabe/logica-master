@@ -9,16 +9,16 @@ import {
 } from '../../../shared/subdocuments';
 
 const invoiceSchema: Schema = new Schema({
-  invoiceCode: [
+  invoiceNumber: [
     {
       /** Tipo de codigo de factura */
-      sequenceCode: {
+      invoiceSequenceIdentifier: {
         type: Schema.Types.ObjectId,
-        ref: 'Sequence',
+        ref: 'InvoiceNumber',
         required: true
       },
       /** Indica el codigo de factura */
-      sequenceValue: { type: String, required: true }
+      value: { type: String, required: true }
     }
   ],
   /** Vendedor que crea el documento */

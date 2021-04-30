@@ -1,6 +1,13 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 import connect from '../../../config/db.config';
+
+export interface IDocument extends Document {
+  issueDate: Date;
+  dueDate?: Date;
+  currencyCode: string;
+  note: [string];
+}
 
 /**
  * Modelo para describir de un documento
@@ -17,11 +24,11 @@ const documentSchema = new Schema(
     currencyCode: String,
     note: [String],
     /** Indica el tipo de factura */
-    documentType: {
-      type: Schema.Types.ObjectId,
-      ref: 'OperSetting',
-      required: true
-    },
+    // documentType: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'OperSetting',
+    //   required: true
+    // },
     documentPeriods: [
       {
         type: Schema.Types.ObjectId,
