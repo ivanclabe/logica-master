@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { amountType } from '../types';
+import amountTypeSchema, { IAmountType } from '../types/amountType';
 
 /**
  *
@@ -14,7 +14,7 @@ import { amountType } from '../types';
 export const schema: Schema = new Schema(
   {
     amount: {
-      type: amountType.schema,
+      type: amountTypeSchema,
       required: true
     },
     priceList: {

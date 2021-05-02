@@ -1,4 +1,15 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
+
+export interface IAddressLine extends Document {
+  line: string;
+}
+
+export interface IAddress extends Document {
+  streetName: string;
+  addressLine?: IAddressLine;
+  city: string;
+  postalZone?: string;
+}
 
 /**
  *
@@ -9,7 +20,7 @@ import { Schema } from 'mongoose';
  * sobre una dirección
  * @returns {Schema}
  */
-export const schema: Schema = new Schema(
+const addressSchema: Schema = new Schema(
   {
     streetName: String,
     addressLine: {
@@ -34,3 +45,5 @@ export const schema: Schema = new Schema(
     _id: false
   }
 );
+
+export default addressSchema;

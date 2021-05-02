@@ -1,14 +1,11 @@
 import { Schema, Types, Document, Decimal128 } from 'mongoose';
 
-interface IAmountType extends Document {
+export interface IAmountType extends Document {
   currencyCode?: string;
   value?: Decimal128;
 }
 
-/**
- * @name amountTypeSchema
- */
-export default new Schema(
+const amountTypeSchema: Schema = new Schema(
   {
     currencyCode: { type: String, default: 'COP' },
     value: {
@@ -21,4 +18,4 @@ export default new Schema(
   }
 );
 
-export { IAmountType };
+export default amountTypeSchema;

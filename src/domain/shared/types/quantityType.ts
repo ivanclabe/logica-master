@@ -1,14 +1,11 @@
 import { Decimal128, Schema, Types } from 'mongoose';
 
-interface IQuantityType extends Document {
+export interface IQuantityType extends Document {
   unitCode?: string;
   value?: Decimal128;
 }
 
-/**
- * @name quantityTypeSchema
- */
-export default new Schema(
+export const quantityTypeSchema: Schema = new Schema(
   {
     unitCode: { type: String, default: '' },
     value: {
@@ -21,4 +18,4 @@ export default new Schema(
   }
 );
 
-export { IQuantityType };
+export default quantityTypeSchema;

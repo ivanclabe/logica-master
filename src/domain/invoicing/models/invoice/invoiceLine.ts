@@ -1,14 +1,8 @@
-import { Schema } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 
 import { DocumentLineModel } from '../../../shared/discriminators/documentLine';
 
 const invoiceLineSchema: Schema = new Schema({
-  /**
-   * Un indicador de que esta línea de factura es libre
-   * de cargos (verdadero) o no (falso).
-   * El valor predeterminado es falso.
-   */
-  freeOfCharge: { type: Boolean, default: false },
   /**
    * Una referencia a una línea de pedido asociada
    * con esta línea de factura.
@@ -22,7 +16,21 @@ const invoiceLineSchema: Schema = new Schema({
         ref: 'Order'
       }
     }
-  ]
+  ],
+  /**
+   * El precio del artículo o servicio asociado con esta
+   * línea de factura.
+   */
+  price: {
+    amount: {
+      type: Types.Decimal128,
+      required: true
+    },
+    priceReference: {
+      type: Schema.Types.ObjectId,
+      ref: 'PriceListLine'
+    }
+  }
 });
 
 export default DocumentLineModel.discriminator(

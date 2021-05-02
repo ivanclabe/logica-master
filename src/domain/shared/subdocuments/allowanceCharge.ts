@@ -1,12 +1,23 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, Types, Decimal128 } from 'mongoose';
 
-import { SS } from '../types';
+import amountTypeSchema, { IAmountType } from '../types/amountType';
+
+export interface IAllowanceCharge extends Document {
+  chargeId: string;
+  chargeIndicator: boolean;
+  chargeReason?: [string];
+  multiplierFactor?: number;
+  sequenceNumeric?: number;
+  amount: Decimal128;
+  baseAmount: Decimal128;
+  perUnitAmount: Decimal128;
+}
 
 /**
  * @name AllowanceCharge
  * @return {object} - Returna el modelo City
  */
-export const schema: Schema = new Schema({
+const allowanceChargechema: Schema = new Schema({
   chargeId: {
     type: String,
     required: true
@@ -35,16 +46,16 @@ export const schema: Schema = new Schema({
     min: 0
   },
   amount: {
-    type: amountType.schema,
-    required: true
+    type: Types.Decimal128,
+    default: 0
   },
   /**
    * El monto monetario al que se aplica el factor multiplicador
    * al calcular el monto de esta asignación o cargo.
    */
   baseAmount: {
-    type: amountType.schema,
-    required: true
+    type: Types.Decimal128,
+    default: 0
   },
   /**
    * La asignación o cargo por artículo; la asignación o cargo
@@ -53,5 +64,10 @@ export const schema: Schema = new Schema({
    * transacción individual o por el número total de artículos
    * en el documento, según el contexto en el que aparece.
    */
-  perUnitAmount: amountType.schema
+  perUnitAmount: {
+    type: Types.Decimal128,
+    default: 0
+  }
 });
+
+export default allowanceChargechema;

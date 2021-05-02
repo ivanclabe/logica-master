@@ -1,6 +1,12 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 import connect from '../../../config/db.config';
+
+export interface IItem extends Document {
+  itemName: [string];
+  description?: [string];
+  keyword?: [string];
+}
 
 /**
  * Modelo para describir de un Item

@@ -1,6 +1,11 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
-export const schema: Schema = new Schema(
+export interface IPeriod extends Document {
+  startDate?: Date;
+  endDate: Date;
+}
+
+const periodSchema: Schema = new Schema(
   {
     startDate: {
       type: Date,
@@ -13,3 +18,5 @@ export const schema: Schema = new Schema(
   },
   { _id: false }
 );
+
+export default periodSchema;

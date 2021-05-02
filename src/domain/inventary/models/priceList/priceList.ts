@@ -1,6 +1,17 @@
-import { Schema } from 'mongoose';
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="../../../common"/>
 
+import { Schema, Document } from 'mongoose';
+
+import {} from '../../../common';
 import connect from '../../../../config/db.config';
+
+// const { PeriodModel,IPP } = models.PeriodAggregate;
+
+export interface IPriceList extends Document {
+  listName: string;
+  validPeriod: [];
+}
 
 /**
  * Esquema para describir un lista de precio.

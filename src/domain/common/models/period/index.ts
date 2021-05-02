@@ -1,1 +1,1 @@
-export * as period from './period';
+export { PeriodModel, IPeriod as IPPeriod } from './period';

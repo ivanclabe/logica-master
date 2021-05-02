@@ -1,7 +1,27 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
-import { address, contact } from '../subdocuments';
+import addressSchema, { IAddress } from '../subdocuments/address';
+import contactSchema, { IContact } from '../subdocuments/contact';
+
 import connect from '../../../config/db.config';
+
+export interface IPartyIdentification {
+  identificationType: string;
+  identificationCode: string;
+  additionalCode: string;
+}
+
+export interface ILocation {
+  address: IAddress;
+  description: [string];
+}
+
+export interface IParty extends Document {
+  partyIdentification: [IPartyIdentification];
+  location: ILocation;
+  email: string;
+  contact: IContact;
+}
 
 /**
  * Una modelo para describir una organización,
@@ -15,7 +35,7 @@ const partySchema: Schema = new Schema(
     /** Identificador para este party */
     partyIdentification: [
       {
-        identificationName: {
+        identificationType: {
           type: Schema.Types.ObjectId,
           ref: 'OperSetting',
           required: true
@@ -24,7 +44,7 @@ const partySchema: Schema = new Schema(
       }
     ],
     location: {
-      address: address.schema,
+      address: addressSchema,
       description: [String]
     },
     email: {
@@ -33,7 +53,7 @@ const partySchema: Schema = new Schema(
       lowercase: true
       // validate: validateEmail,
     },
-    contact: contact.schema
+    contact: contactSchema
   },
   {
     collection: 'parties',
@@ -41,4 +61,4 @@ const partySchema: Schema = new Schema(
   }
 );
 
-export const PartyModel = connect.model('Party', partySchema);
+export const PartyModel = connect.model<IParty>('Party', partySchema);

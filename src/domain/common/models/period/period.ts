@@ -1,6 +1,13 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 import connect from '../../../../config/db.config';
+
+export interface IPeriod extends Document {
+  periodCode: string;
+  startDate?: Date;
+  endDate?: Date;
+  description?: [string];
+}
 
 const periodSchema: Schema = new Schema(
   {
@@ -13,10 +20,7 @@ const periodSchema: Schema = new Schema(
       type: Date,
       default: Date.now
     },
-    endDate: {
-      type: Date,
-      required: true
-    },
+    endDate: Date,
     // Una descripción de este período, expresada como texto.
     description: [String]
   },
@@ -25,4 +29,4 @@ const periodSchema: Schema = new Schema(
   }
 );
 
-export const PeriodModel = connect.model('Period', periodSchema);
+export const PeriodModel = connect.model<IPeriod>('Period', periodSchema);

@@ -1,6 +1,15 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, Types, Decimal128 } from 'mongoose';
 
-import { amountType } from '../types';
+export interface IMonetary extends Document {
+  lineExtensionAmount: Decimal128;
+  taxExclusiveAmount: Decimal128;
+  taxInclusiveAmount: Decimal128;
+  allowanceTotalAmount: Decimal128;
+  chargeTotalAmount: Decimal128;
+  prepaidAmount: Decimal128;
+  payableRoundingAmount: Decimal128;
+  payableAmount: Decimal128;
+}
 
 /**
  * @name monetarySchema
@@ -8,7 +17,7 @@ import { amountType } from '../types';
  * sobre un precio
  * @returns {Schema}
  */
-export const schema: Schema = new Schema(
+const monetarySchema: Schema = new Schema(
   {
     /**
      * El monto monetario de una línea de transacción
@@ -17,16 +26,16 @@ export const schema: Schema = new Schema(
      * redondeo aplicable.
      */
     lineExtensionAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto monetario de una línea de transacción
      * extendida, sin incluir impuestos.
      */
     taxExclusiveAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto monetario incluidos los impuestos;
@@ -34,29 +43,29 @@ export const schema: Schema = new Schema(
      * prepaga.
      */
     taxInclusiveAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto monetario total de todas las asignaciones.
      */
     allowanceTotalAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto monetario total de todos los cargos.
      */
     chargeTotalAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto monetario prepago total.
      */
     prepaidAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto de redondeo (positivo o negativo)
@@ -64,16 +73,18 @@ export const schema: Schema = new Schema(
      * de línea.
      */
     payableRoundingAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
     /**
      * El monto del total monetario a pagar.
      */
     payableAmount: {
-      type: amountType.schema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     }
   },
   { _id: false }
 );
+
+export default monetarySchema;

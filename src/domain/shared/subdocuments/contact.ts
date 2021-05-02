@@ -1,5 +1,12 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 // import { validateEmail, validatePhone } from '../../utils/validators';
+
+export interface IContact extends Document {
+  name: string;
+  email: string;
+  phone: string;
+  note?: [string];
+}
 
 /**
  *
@@ -10,7 +17,7 @@ import { Schema } from 'mongoose';
  * sobre un contacto
  * @returns {Schema}
  */
-export const schema: Schema = new Schema(
+const contactSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -39,3 +46,5 @@ export const schema: Schema = new Schema(
     _id: false
   }
 );
+
+export default contactSchema;
