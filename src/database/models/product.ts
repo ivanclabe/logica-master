@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { ItemModel } from '../../../shared/discriminators/item';
+import { ItemModel } from '../../domain/shared/discriminators/item';
 
 /**
  * Modelo para describir de un Item

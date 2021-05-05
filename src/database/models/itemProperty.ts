@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import connect from '../../../../config/db.config';
+import connect from '../../config/db.config';
 
 /**
  * Un esquema para definir un propiedades

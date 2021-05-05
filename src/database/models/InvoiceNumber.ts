@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
 
-import { SequenceIdentifierModel } from '../../../shared/discriminators/sequenceIdentifier';
+import { SequenceIdentifierModel } from '../../domain/shared/discriminators/sequenceIdentifier';
 
 const invoiceNumberSchema: Schema = new Schema({});
 

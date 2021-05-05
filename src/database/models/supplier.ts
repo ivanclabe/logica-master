@@ -1,10 +1,7 @@
 import { Schema } from 'mongoose';
 
-import PartyModel from '../../../shared/discriminators/party';
-import {
-  contactSchema,
-  organizationSchema
-} from '../../../shared/subdocuments';
+import PartyModel from '../../domain/shared/discriminators/party';
+import { contactSchema, organizationSchema } from './subdocuments';
 
 /** Customer Party */
 const supplierSchema: Schema = new Schema({

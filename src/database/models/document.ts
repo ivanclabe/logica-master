@@ -1,6 +1,6 @@
 import { Schema, Document } from 'mongoose';
 
-import connect from '../../../config/db.config';
+import connect from '../../config/db.config';
 
 export interface IDocument extends Document {
   issueDate: Date;

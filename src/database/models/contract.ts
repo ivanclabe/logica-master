@@ -1,7 +1,7 @@
 import { Schema, Types } from 'mongoose';
 
-import { amountType } from '../../../shared/types';
-import connect from '../../../../config/db.config';
+import { amountType } from '../../domain/shared/types';
+import connect from '../../config/db.config';
 
 export const contractSchema: Schema = new Schema(
   {
