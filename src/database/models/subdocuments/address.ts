@@ -1,5 +1,7 @@
 import { Schema, Document } from 'mongoose';
 
+import { ICity, DOCUMENT_NAME as CityModelName } from '../city';
+
 export interface IAddressLine extends Document {
   line: string;
 }
@@ -7,7 +9,7 @@ export interface IAddressLine extends Document {
 export interface IAddress extends Document {
   streetName: string;
   addressLine?: IAddressLine;
-  city: string;
+  city: ICity['id'];
   postalZone?: string;
 }
 
@@ -20,7 +22,7 @@ export interface IAddress extends Document {
  * sobre una dirección
  * @returns {Schema}
  */
-const addressSchema: Schema = new Schema(
+export const addressSchema: Schema = new Schema(
   {
     streetName: String,
     addressLine: {
@@ -36,7 +38,7 @@ const addressSchema: Schema = new Schema(
     },
     city: {
       type: Schema.Types.ObjectId,
-      ref: 'City',
+      ref: CityModelName,
       required: [true, 'City field is required']
     },
     postalZone: String
@@ -45,5 +47,3 @@ const addressSchema: Schema = new Schema(
     _id: false
   }
 );
-
-export default addressSchema;

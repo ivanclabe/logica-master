@@ -1,15 +1,15 @@
 import { Schema, Types, Document, Decimal128 } from 'mongoose';
 
 export interface IQuantity extends Document {
-  receivedQuantity: Decimal128;
-  onOrderQuantity: Decimal128;
-  shippedQuantity: Decimal128;
-  allocatedQuantity: Decimal128;
-  backOrderedQuantity: Decimal128;
-  initLevelQuantity: Decimal128;
-  onHandQuantity: Decimal128;
-  availableQuantity: Decimal128;
-  currentLevelQuantity: Decimal128;
+  receivedQuantity?: Decimal128;
+  onOrderQuantity?: Decimal128;
+  shippedQuantity?: Decimal128;
+  allocatedQuantity?: Decimal128;
+  backOrderedQuantity?: Decimal128;
+  initLevelQuantity?: Decimal128;
+  onHandQuantity?: Decimal128;
+  availableQuantity?: Decimal128;
+  currentLevelQuantity?: Decimal128;
 }
 
 /**
@@ -21,7 +21,7 @@ export interface IQuantity extends Document {
  * sobre un conjunto de cantidades
  * @returns {Schema}
  */
-const quantitySchema: Schema = new Schema(
+export const quantitySchema: Schema = new Schema(
   {
     /**
      * Cantidad Recibida
@@ -94,5 +94,3 @@ const quantitySchema: Schema = new Schema(
     _id: false
   }
 );
-
-export default quantitySchema;

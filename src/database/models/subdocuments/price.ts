@@ -1,6 +1,9 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, Types, Decimal128 } from 'mongoose';
 
-import amountTypeSchema, { IAmountType } from '../types/amountType';
+export interface IPrice extends Document {
+  amount?: Decimal128;
+  priceReference: string;
+}
 
 /**
  *
@@ -11,13 +14,13 @@ import amountTypeSchema, { IAmountType } from '../types/amountType';
  * sobre un precio
  * @returns {Schema}
  */
-export const schema: Schema = new Schema(
+export const priceSchema: Schema = new Schema(
   {
     amount: {
-      type: amountTypeSchema,
-      required: true
+      type: Types.Decimal128,
+      default: 0
     },
-    priceList: {
+    priceReference: {
       type: Schema.Types.ObjectId,
       ref: 'PriceListLine'
     }

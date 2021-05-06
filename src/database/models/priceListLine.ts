@@ -1,13 +1,26 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, model, Types, Decimal128 } from 'mongoose';
 
-import { allowanceCharge } from '../../../shared/subdocuments';
-import { amountType } from '../../../shared/types';
-import connect from '../../../../config/db.config';
+import { IPriceList, DOCUMENT_NAME as PriceListModelName } from './priceList';
+import {
+  IAllowanceCharge,
+  allowanceChargechema
+} from './subdocuments/allowanceCharge';
+
+export const DOCUMENT_NAME = 'PriceListLine';
+export const COLLECTION_NAME = 'pricesListsLines';
+
+export interface IPriceListLine extends Document {
+  priceList: IPriceList['id'];
+  item: string;
+  baseAmount: Decimal128;
+  allowanceCharges: IAllowanceCharge;
+  amount: Decimal128;
+}
 
 const priceListLineSchema: Schema = new Schema({
   priceList: {
     type: Schema.Types.ObjectId,
-    ref: 'PriceList',
+    ref: PriceListModelName,
     required: true
   },
   item: {
@@ -16,21 +29,22 @@ const priceListLineSchema: Schema = new Schema({
     required: true
   },
   baseAmount: {
-    type: amountType.schema,
-    required: true
+    type: Types.Decimal128,
+    default: 0
   },
   /**
    * Una asignación o cargo asociado con este
    * precio.
    */
-  allowanceCharges: [allowanceCharge.schema],
+  allowanceCharges: [allowanceChargechema],
   amount: {
-    type: amountType.schema,
-    required: true
+    type: Types.Decimal128,
+    default: 0
   }
 });
 
-export const PriceListLineModel = connect.model(
-  'PriceListLine',
-  priceListLineSchema
+export const PriceListLineModel = model<IPriceListLine>(
+  DOCUMENT_NAME,
+  priceListLineSchema,
+  COLLECTION_NAME
 );

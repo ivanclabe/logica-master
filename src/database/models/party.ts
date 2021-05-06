@@ -1,9 +1,10 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-import addressSchema, { IAddress } from '../subdocuments/address';
-import contactSchema, { IContact } from '../subdocuments/contact';
+import { IAddress, addressSchema } from './subdocuments/address';
+import { IContact, contactSchema } from './subdocuments/contact';
 
-import connect from '../../../config/db.config';
+export const DOCUMENT_NAME = 'Party';
+export const COLLECTION_NAME = 'parties';
 
 export interface IPartyIdentification {
   identificationType: string;
@@ -56,9 +57,12 @@ const partySchema: Schema = new Schema(
     contact: contactSchema
   },
   {
-    collection: 'parties',
     discriminatorKey: '__t'
   }
 );
 
-export const PartyModel = connect.model<IParty>('Party', partySchema);
+export const PartyModel = model<IParty>(
+  DOCUMENT_NAME,
+  partySchema,
+  COLLECTION_NAME
+);

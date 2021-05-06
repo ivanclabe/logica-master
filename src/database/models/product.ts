@@ -1,6 +1,16 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-import { ItemModel } from '../../domain/shared/discriminators/item';
+import { IItem, ItemModel } from './item';
+
+export const DOCUMENT_NAME = 'Product';
+export const COLLECTION_NAME = 'products';
+
+export interface IProduct extends IItem {
+  productIdentification: [];
+  packQuantity: number;
+  brandName: [string];
+  modelName: [string];
+}
 
 /**
  * Modelo para describir de un Item
@@ -47,7 +57,7 @@ const productSchema: Schema = new Schema({
   ]
 });
 
-export const ProductModel = ItemModel.discriminator(
+export const ProductModel = ItemModel.discriminator<IProduct>(
   'ProductItem',
   productSchema
 );

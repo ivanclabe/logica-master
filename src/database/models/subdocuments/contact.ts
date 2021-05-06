@@ -17,7 +17,7 @@ export interface IContact extends Document {
  * sobre un contacto
  * @returns {Schema}
  */
-const contactSchema: Schema = new Schema(
+export const contactSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -46,5 +46,3 @@ const contactSchema: Schema = new Schema(
     _id: false
   }
 );
-
-export default contactSchema;

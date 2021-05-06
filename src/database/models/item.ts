@@ -1,6 +1,7 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-import connect from '../../../config/db.config';
+export const DOCUMENT_NAME = 'Item';
+export const COLLECTION_NAME = 'items';
 
 export interface IItem extends Document {
   itemName: [string];
@@ -31,9 +32,12 @@ const itemSchema: Schema = new Schema(
     keyword: [String]
   },
   {
-    collection: 'items',
     discriminatorKey: '__t'
   }
 );
 
-export const ItemModel = connect.model('Item', itemSchema);
+export const ItemModel = model<IItem>(
+  DOCUMENT_NAME,
+  itemSchema,
+  COLLECTION_NAME
+);

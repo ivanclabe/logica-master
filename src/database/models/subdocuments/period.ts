@@ -5,7 +5,7 @@ export interface IPeriod extends Document {
   endDate: Date;
 }
 
-const periodSchema: Schema = new Schema(
+export const periodSchema: Schema = new Schema(
   {
     startDate: {
       type: Date,
@@ -18,5 +18,3 @@ const periodSchema: Schema = new Schema(
   },
   { _id: false }
 );
-
-export default periodSchema;

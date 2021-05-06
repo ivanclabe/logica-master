@@ -1,7 +1,5 @@
 import { Schema, Document, Types, Decimal128 } from 'mongoose';
 
-import amountTypeSchema, { IAmountType } from '../types/amountType';
-
 export interface IAllowanceCharge extends Document {
   chargeId: string;
   chargeIndicator: boolean;
@@ -17,7 +15,7 @@ export interface IAllowanceCharge extends Document {
  * @name AllowanceCharge
  * @return {object} - Returna el modelo City
  */
-const allowanceChargechema: Schema = new Schema({
+export const allowanceChargechema: Schema = new Schema({
   chargeId: {
     type: String,
     required: true
@@ -69,5 +67,3 @@ const allowanceChargechema: Schema = new Schema({
     default: 0
   }
 });
-
-export default allowanceChargechema;

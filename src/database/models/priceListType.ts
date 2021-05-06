@@ -1,17 +1,21 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-import connect from '../../../../config/db.config';
+export const DOCUMENT_NAME = 'PriceListType';
+export const COLLECTION_NAME = 'pricesListsTypes';
+
+export interface IPriceListType extends Document {
+  listTypeName: string;
+}
 
 /**
  * Esquema para describir un lista de precio.
  */
-const priceTypeSchema: Schema = new Schema(
-  {
-    listName: { type: String, required: true }
-  },
-  {
-    collection: 'pricesTypes'
-  }
-);
+const priceListTypeSchema: Schema = new Schema({
+  listTypeName: { type: String, required: true }
+});
 
-export const PriceTypeModel = connect.model('PriceType', priceTypeSchema);
+export const PriceTypeModel = model<IPriceListType>(
+  DOCUMENT_NAME,
+  priceListTypeSchema,
+  COLLECTION_NAME
+);

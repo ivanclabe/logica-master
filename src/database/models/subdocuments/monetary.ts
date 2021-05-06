@@ -17,7 +17,7 @@ export interface IMonetary extends Document {
  * sobre un precio
  * @returns {Schema}
  */
-const monetarySchema: Schema = new Schema(
+export const monetarySchema: Schema = new Schema(
   {
     /**
      * El monto monetario de una línea de transacción
@@ -86,5 +86,3 @@ const monetarySchema: Schema = new Schema(
   },
   { _id: false }
 );
-
-export default monetarySchema;

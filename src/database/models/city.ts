@@ -1,6 +1,15 @@
-import { Schema } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
-import connect from '../../../../config/db.config';
+import { ISubentity, DOCUMENT_NAME as SubentityModelName } from './subentity';
+
+export const DOCUMENT_NAME = 'City';
+export const COLLECTION_NAME = 'cities';
+
+export interface ICity extends Document {
+  cityCode: string;
+  cityName: string;
+  subentity: ISubentity['id'];
+}
 
 /**
  * Esquema que describe una ciudad
@@ -19,7 +28,7 @@ const citySchema: Schema = new Schema(
     },
     subentity: {
       type: Schema.Types.ObjectId,
-      ref: 'Subentity',
+      ref: SubentityModelName,
       required: true
     }
   },
@@ -28,4 +37,8 @@ const citySchema: Schema = new Schema(
   }
 );
 
-export const City = connect.model('City', citySchema);
+export const CityModel = model<ICity>(
+  DOCUMENT_NAME,
+  citySchema,
+  COLLECTION_NAME
+);

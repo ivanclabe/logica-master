@@ -1,29 +1,39 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-import { quantity } from '../../../shared/subdocuments';
-import connect from '../../../../config/db.config';
+import {
+  IInventaryLine,
+  DOCUMENT_NAME as InventaryLineModelName
+} from './inventaryLine';
+import { IQuantity, quantitySchema } from './subdocuments/quantity';
+
+export const DOCUMENT_NAME = 'InventaryLot';
+export const COLLECTION_NAME = 'inventaries_lots';
+
+export interface IInventaryLot extends Document {
+  inventaryLine: IInventaryLine['id'];
+  lotName: string;
+  dueDate: Date;
+  note: [string];
+  quantity: IQuantity;
+}
 
 /**
  * Esquema para describir un lote.
  */
-const inventaryLotSchema: Schema = new Schema(
-  {
-    inventaryLine: {
-      type: Schema.Types.ObjectId,
-      ref: 'InventaryLine',
-      required: true
-    },
-    lotName: { type: String, trim: true, required: true },
-    dueDate: Date,
-    note: [String],
-    quantity: quantity.schema
+const inventaryLotSchema: Schema = new Schema({
+  inventaryLine: {
+    type: Schema.Types.ObjectId,
+    ref: InventaryLineModelName,
+    required: true
   },
-  {
-    collection: 'inventariesLots'
-  }
-);
+  lotName: { type: String, trim: true, required: true },
+  dueDate: Date,
+  note: [String],
+  quantity: { type: quantitySchema, required: true }
+});
 
-export const InventaryLotModel = connect.model(
-  'InventaryLot',
-  inventaryLotSchema
+export const InventaryLotModel = model<IInventaryLot>(
+  DOCUMENT_NAME,
+  inventaryLotSchema,
+  COLLECTION_NAME
 );

@@ -1,44 +1,43 @@
-import { Schema, Document } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
+import {
+  IPriceListType,
+  DOCUMENT_NAME as PriceListTypeModelName
+} from './priceListType';
 
-import {} from '../../domain/common';
-import connect from '../../config/db.config';
+import { periodSchema, IPeriod } from './subdocuments/period';
 
-// const { PeriodModel,IPP } = models.PeriodAggregate;
+export const DOCUMENT_NAME = 'PriceList';
+export const COLLECTION_NAME = 'pricesLists';
 
 export interface IPriceList extends Document {
   listName: string;
-  validPeriod: [];
+  validPeriod?: [IPeriod];
+  priceListType?: IPriceListType['id'];
 }
 
 /**
  * Esquema para describir un lista de precio.
  */
-const pricelistSchema: Schema = new Schema(
-  {
-    listName: { type: String, required: true },
-    validPeriod: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Period'
-      }
-    ],
-    priceType: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'PriceType'
-      }
-    ],
-    listLine: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'priceListLine',
-        required: true
-      }
-    ]
-  },
-  {
-    collection: 'pricesLists'
-  }
-);
+const pricelistSchema: Schema = new Schema({
+  listName: { type: String, required: true },
+  validPeriod: [periodSchema],
+  priceListType: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: PriceListTypeModelName
+    }
+  ],
+  listLine: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'priceListLine',
+      required: true
+    }
+  ]
+});
 
-export const PriceListModel = connect.model('PriceList', pricelistSchema);
+export const PriceListModel = model<IPriceList>(
+  DOCUMENT_NAME,
+  pricelistSchema,
+  COLLECTION_NAME
+);
