@@ -1,7 +1,7 @@
-import { Schema, Types } from 'mongoose';
+import { Schema, Document, Types } from 'mongoose';
 
-import { amountType } from '../../domain/shared/types';
-import connect from '../../config/db.config';
+export const DOCUMENT_NAME = 'City';
+export const COLLECTION_NAME = 'cities';
 
 export const contractSchema: Schema = new Schema(
   {
