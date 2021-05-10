@@ -6,7 +6,7 @@ import { IContact, contactSchema } from './subdocuments/contact';
 export const DOCUMENT_NAME = 'Party';
 export const COLLECTION_NAME = 'parties';
 
-export const enum partyTypes {
+export enum partyTypes {
   CUSTOMER = 'customer',
   SUPPLIER = 'supplier'
 }
@@ -73,7 +73,7 @@ const partySchema: Schema = new Schema({
       required: true
     }
   ],
-  name: { type: String, trim: true, required: true },
+  firstname: { type: String, trim: true, required: true },
   lastname: { type: String, trim: true, required: true },
   location: {
     address: addressSchema,
@@ -104,10 +104,10 @@ const partySchema: Schema = new Schema({
       ref: 'Contract'
     }
   ],
-  __t: {
+  _type: {
     type: String,
-    required: true,
-    enum: [partyTypes.CUSTOMER, partyTypes.SUPPLIER]
+    enum: Object.values(partyTypes),
+    required: true
   }
 });
 

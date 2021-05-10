@@ -1,8 +1,4 @@
 import { Schema, Document, model } from 'mongoose';
-import {
-  IPriceListType,
-  DOCUMENT_NAME as PriceListTypeModelName
-} from './priceListType';
 
 import { periodSchema, IPeriod } from './subdocuments/period';
 
@@ -12,7 +8,6 @@ export const COLLECTION_NAME = 'pricesLists';
 export interface IPriceList extends Document {
   listName: string;
   validPeriod?: [IPeriod];
-  priceListType?: IPriceListType['id'];
 }
 
 /**
@@ -21,12 +16,6 @@ export interface IPriceList extends Document {
 const pricelistSchema: Schema = new Schema({
   listName: { type: String, required: true },
   validPeriod: [periodSchema],
-  priceListType: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: PriceListTypeModelName
-    }
-  ],
   listLine: [
     {
       type: Schema.Types.ObjectId,

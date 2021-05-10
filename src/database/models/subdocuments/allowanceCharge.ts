@@ -15,7 +15,7 @@ export interface IAllowanceCharge extends Document {
  * @name AllowanceCharge
  * @return {object} - Returna el modelo City
  */
-export const allowanceChargechema: Schema = new Schema({
+export const allowanceChargeSchema: Schema = new Schema({
   chargeId: {
     type: String,
     required: true

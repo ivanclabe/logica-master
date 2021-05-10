@@ -1,6 +1,22 @@
-import { Schema } from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-import connect from '../../config/db.config';
+import { ICode, codeSchema } from './subdocuments/code';
+
+export const DOCUMENT_NAME = 'ItemProperty';
+export const COLLECTION_NAME = 'items_properties';
+
+export enum propertyTypes {
+  CATEGORY = 'category',
+  GROUP = 'group',
+  CLASS = 'class'
+}
+
+export interface IItemProperty extends Document {
+  propertyCode: ICode;
+  propertyType?: propertyTypes;
+  propertyName: string;
+  description?: string[];
+}
 
 /**
  * Un esquema para definir un propiedades
@@ -8,21 +24,19 @@ import connect from '../../config/db.config';
  *
  * @name ItemProperty
  */
-const itemPropertySchema: Schema = new Schema(
-  {
-    propertyName: { type: String, required: true, trim: true },
-    propertyType: {
-      type: String,
-      enum: ['Texto', 'Numero', 'Fecha', 'Condicional'],
-      default: 'Texto'
-    }
+const itemPropertySchema: Schema = new Schema({
+  propertyCode: codeSchema,
+  propertyType: {
+    type: String,
+    enum: Object.values(propertyTypes),
+    required: true
   },
-  {
-    collection: 'itemsProperties'
-  }
-);
+  propertyName: { type: String, trim: true, required: true },
+  description: [String]
+});
 
-export const ItemPropertyModel = connect.model(
-  'ItemProperty',
-  itemPropertySchema
+export const ItemPropertyModel = model<IItemProperty>(
+  DOCUMENT_NAME,
+  itemPropertySchema,
+  COLLECTION_NAME
 );

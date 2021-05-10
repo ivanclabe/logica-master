@@ -1,10 +1,15 @@
 import { Schema, Types, Document, Decimal128 } from 'mongoose';
 
+import {
+  IOptionType,
+  DOCUMENT_NAME as OptionTypeModelName
+} from '../optionType';
+
 export interface ITaxSubTotal extends Document {
   taxableAmount?: Decimal128;
-  taxAmount?: Decimal128;
-  percent?: number;
-  taxCategory: string;
+  taxAmount: Decimal128;
+  percent: number;
+  taxCategory: IOptionType;
 }
 
 export interface ITax extends Document {
@@ -27,17 +32,19 @@ export const taxSubtotalSchema: Schema = new Schema({
    */
   taxAmount: {
     type: Types.Decimal128,
-    default: 0
+    default: 0,
+    required: true
   },
   percent: {
     type: Number,
     min: 0,
     max: 100,
+    required: true,
     get: (v: number) => `${v}%`
   },
   taxCategory: {
     type: Types.ObjectId,
-    ref: 'TaxCategory',
+    ref: OptionTypeModelName,
     required: true
   }
 });
