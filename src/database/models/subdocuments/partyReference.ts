@@ -27,7 +27,7 @@ export const assignedIdentificationSchema: Schema = new Schema(
   {
     identificationType: {
       type: Schema.Types.ObjectId,
-      ref: OptionTypeModelName.replace,
+      ref: OptionTypeModelName,
       required: true
     },
     identificationValue: { type: String, trim: true, required: true },
@@ -50,7 +50,11 @@ export const partyReferenceSchema: Schema = new Schema(
       type: assignedIdentificationSchema,
       required: true
     },
-    party: { type: Schema.Types.ObjectId, ref: PartyModelName, required: true }
+    party: {
+      type: Schema.Types.ObjectId,
+      ref: PartyModelName,
+      required: true
+    }
   },
   {
     _id: false
