@@ -1,4 +1,4 @@
-import { ICode } from '../common/Code';
+import Base from '../extends/Base';
 import { IItemProperty } from './ItemProperty';
 
 export enum itemTypes {
@@ -9,11 +9,11 @@ export enum itemTypes {
 /**
  * Una interfaz para describir un item.
  */
-export interface IItem {
-  itemCode: ICode[];
+export interface IItem extends Base {
   itemName: string[];
   description?: string[];
   measureUnit?: string;
+
   /**
    * La cantidad de embalaje unitario; el número
    * de subunidades que componen este artículo.

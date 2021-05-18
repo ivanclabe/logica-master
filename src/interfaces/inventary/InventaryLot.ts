@@ -1,9 +1,8 @@
+import Base from '../extends/Base';
 import { IInventaryLine } from './InventaryLine';
-import { ICode } from '../common/Code';
 import { IQuantity } from '../known/Quantity';
 
-export interface IInventaryLot {
-  lotCode: ICode;
+export interface IInventaryLot extends Base {
   inventaryLine: IInventaryLine;
   lotName: string;
   dueDate: Date;

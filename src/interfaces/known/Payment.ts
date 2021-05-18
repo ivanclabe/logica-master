@@ -1,10 +1,9 @@
-import { ICode } from '../common/Code';
+import Base, { Amount } from '../extends/Base';
 
 /**
  * Interfaz para describir un pago.
  */
-export interface IPayment {
-  paymentCode: ICode;
+export interface IPayment extends Base {
   paidDate: Date;
-  paidAmount: number;
+  paidAmount: Amount;
 }

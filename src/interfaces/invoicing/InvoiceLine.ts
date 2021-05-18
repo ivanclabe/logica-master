@@ -1,4 +1,4 @@
-import { ICode } from '../common/Code';
+import Base from '../extends/Base';
 import { IItem } from '../inventary/Item';
 import { IAllowanceCharge } from '../known/AllowanceCharge';
 import { ITax } from '../known/tax';
@@ -7,8 +7,7 @@ import { IInvoice } from './Invoice';
 
 export enum lineTypes {}
 
-export interface IInvoiceLine {
-  lineCode: ICode;
+export interface IInvoiceLine extends Base {
   invoice: IInvoice;
   item: IItem;
   note: string[];

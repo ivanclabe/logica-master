@@ -6,24 +6,22 @@ export enum partyTypes {
   SUPPLIER = 'supplier'
 }
 
-export interface IPartyIdentification {
+import Base from '../extends/Base';
+
+export interface IPartyIdentification extends Base {
   identificationType: string;
-  identificationCode: string;
-  additionalCode: string;
-  isMainIdentification: boolean;
+  main: boolean;
 }
 
-export interface ILocation {
-  address: IAddress;
-  description: string[];
-}
-
-export interface IParty {
+export interface IParty extends Base {
   partyIdentification: IPartyIdentification[];
   organizationName: string[];
-  name: string;
+  name?: string;
   lastname?: string;
-  location: ILocation;
+  location: {
+    address: IAddress;
+    description?: string[];
+  };
   email: string;
   logo?: string;
   website?: string;

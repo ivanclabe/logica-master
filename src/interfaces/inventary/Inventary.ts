@@ -1,8 +1,7 @@
+import Base from '../extends/Base';
 import { IPeriod } from '../common/Period';
-import { ICode } from '../common/Code';
 
-export interface IInventary {
-  inventaryCode: ICode;
+export interface IInventary extends Base {
   inventaryPeriod: IPeriod;
   note?: string[];
 }

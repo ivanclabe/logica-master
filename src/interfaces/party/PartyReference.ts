@@ -1,10 +1,9 @@
+import Base from '../extends/Base';
 import { IOptionType } from '../common/OptionType';
 import { IParty } from './Party';
 
-export interface IAssignedIdentification {
+export interface IAssignedIdentification extends Base {
   identificationType: IOptionType;
-  identificationValue: string;
-  extendedValue?: string;
 }
 
 export interface IPartyReference {

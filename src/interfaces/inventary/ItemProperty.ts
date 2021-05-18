@@ -1,4 +1,4 @@
-import { ICode } from '../common/code';
+import Base from '../extends/Base';
 
 export enum propertyTypes {
   CATEGORY = 'category',
@@ -6,8 +6,7 @@ export enum propertyTypes {
   CLASS = 'class'
 }
 
-export interface IItemProperty {
-  propertyCode: ICode;
+export interface IItemProperty extends Base {
   propertyType?: propertyTypes;
   propertyName: string;
   description?: string[];

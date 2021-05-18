@@ -1,8 +1,7 @@
+import Base from '../extends/Base';
 import { ISubentity } from './Subentity';
-import { ICode } from '../common/Code';
 
-export interface ICity {
-  cityCode: ICode;
+export interface ICity extends Base {
   cityName: string;
   subentity: ISubentity;
 }

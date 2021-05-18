@@ -1,9 +1,8 @@
+import Base from '../extends/Base';
 import { IInventary } from './inventary';
-import { ICode } from '../common/Code';
 import { IQuantity } from '../known/Quantity';
 
-export interface IInventaryLine {
-  lineCode: ICode;
+export interface IInventaryLine extends Base {
   inventary: IInventary;
   quantity: IQuantity;
 }

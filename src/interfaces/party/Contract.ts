@@ -1,9 +1,8 @@
-import { ICode } from '../common/Code';
+import Base from '../extends/Base';
 import { IOptionType } from '../common/OptionType';
 import { IPeriod } from '../common/Period';
 
-export interface IContract {
-  contractCode: ICode;
+export interface IContract extends Base {
   ContractType: IOptionType;
   issueDate: Date;
   currencyCode: string;

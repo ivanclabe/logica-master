@@ -1,4 +1,4 @@
-import { ICode } from '../common/Code';
+import Base from '../extends/Base';
 
 export enum optionTypesType {
   CHARGE_TYPE = 'chargeType',
@@ -14,9 +14,8 @@ export enum optionTypesType {
   MEASURE_UNIT = 'measureUnit'
 }
 
-export interface IOptionType {
+export interface IOptionType extends Base {
   order?: number;
-  optionCode?: ICode;
   optionName: string;
   description?: string[];
   defaultValue?: boolean;

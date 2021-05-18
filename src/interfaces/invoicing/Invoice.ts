@@ -1,5 +1,5 @@
+import Base from '../extends/Base';
 import { IPartyReference } from '../party/PartyReference';
-import { ICode } from '../common/Code';
 import { IAllowanceCharge } from '../known/AllowanceCharge';
 import { ITax } from '../known/Tax';
 import { IPayment } from '../known/Payment';
@@ -17,8 +17,7 @@ export enum invoiceTypes {
 /**
  * Interfaz que describe una factura
  */
-export interface IInvoice {
-  invoiceCode: ICode;
+export interface IInvoice extends Base {
   issueDate: Date;
   dueDate?: Date;
   currencyCode: string;
@@ -29,17 +28,21 @@ export interface IInvoice {
   orderReference?: string;
   contract?: string[];
   paymentMeans?: IPaymentMean[];
+
   /** Un pago prepago */
   prepaidPayment?: IPayment[];
+
   /**
    * Un descuento o cargo que se aplica a un componente
    * del precio.
    */
   allowanceCharge?: IAllowanceCharge[];
+
   /**
    * El monto total de un tipo específico de impuesto.
    */
   tax?: ITax[];
+
   /**
    * El monto total pagadero en la factura, incluidas
    * las asignaciones, los cargos y los impuestos.
