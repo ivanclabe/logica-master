@@ -1,4 +1,4 @@
-import Base from '../extends/Base';
+import Base, { Amount } from '../extends/Base';
 import { IPriceList } from './PriceList';
 import { IAllowanceCharge } from '../known/allowanceCharge';
 import { IItem } from './Item';
@@ -6,7 +6,7 @@ import { IItem } from './Item';
 export interface IPriceListLine extends Base {
   priceList: IPriceList;
   item: IItem;
-  baseAmount?: number;
+  baseAmount?: Amount;
+  amount: Amount;
   allowanceCharges?: IAllowanceCharge;
-  amount: number;
 }

@@ -1,4 +1,4 @@
-import Base, { amountType } from '../extends/Base';
+import Base, { Amount } from '../extends/Base';
 import { IOptionType } from '../common/OptionType';
 
 /**
@@ -33,13 +33,13 @@ export interface IAllowanceCharge extends Base {
    * El monto monetario de esta asignación o cargo que se
    * aplicará.
    */
-  amount: amountType;
+  amount: Amount;
 
   /**
    * El monto monetario al que se aplica el factor multiplicador
    * al calcular el monto de esta asignación o cargo.
    */
-  baseAmount?: amountType;
+  baseAmount?: Amount;
 
   /** }
    * La asignación o cargo por artículo; la asignación o cargo
