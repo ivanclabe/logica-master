@@ -10,17 +10,22 @@ export type DateRange = {
   endDate?: Date;
 };
 
-export enum statusCodeType {}
+export enum statusCodeType {
+  NEW = 'new',
+  AVALIABLE = 'available',
+  INACTIVE = 'inactive',
+  DELETED = 'deleted'
+}
 
 /**
  * Interfaz que describe un identificador
  */
 export interface Identifier {
   /** Codigo del identificador */
-  identifierID: string;
+  identifierID?: string;
 
   /** Nombre del identificador */
-  identifierName: string;
+  identifierName?: string;
 
   prefix?: string;
 
@@ -53,6 +58,8 @@ export interface Identifier {
 
 /** Interfaz que define un codigo */
 export interface Code {
+  index: number;
+
   /** Un tipo de identificador */
   identifier?: Identifier;
 
@@ -65,21 +72,21 @@ export interface Code {
   main?: boolean;
 }
 
-export type a = {
-  at: Date;
-  event: string;
-  uuid: string;
+export type TraceReport = {
+  traceCode: Code;
+  traceAt: Date;
+  referencedUUID: string;
+  associatedModel: string;
 };
 
 export interface MetaOptions {
-  active: boolean;
-  deleted: boolean;
-  created: a;
-  updated: a;
+  created?: TraceReport;
+  updated?: TraceReport[];
 }
 
 export default interface Base extends MetaOptions {
   code?: Code | Code[];
+  documentStatusCode: statusCodeType;
 
   /**
    * Un identificador único universal para una
