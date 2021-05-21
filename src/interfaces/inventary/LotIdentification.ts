@@ -5,6 +5,6 @@ export interface ILotIdentification extends Base {
   lotNumber: string;
   /** La fecha de caducidad del lote. */
   expiryDate: Date;
-  note?: [string];
+  note?: string[];
   itemInstance: IItemInstance;
 }

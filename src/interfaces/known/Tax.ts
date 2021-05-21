@@ -1,6 +1,4 @@
-import Base, { Amount } from '../extends/Base';
-import { IOptionType } from '../common/OptionType';
-
+import Base, { Amount, OptionType } from '../extends/Base';
 export interface ITaxSubTotal {
   /**
    * El importe neto al que se aplica el porcentaje
@@ -15,7 +13,7 @@ export interface ITaxSubTotal {
    */
   taxAmount: Amount;
   percent: number;
-  taxCategory: IOptionType;
+  taxCategory: OptionType;
 }
 
 /**

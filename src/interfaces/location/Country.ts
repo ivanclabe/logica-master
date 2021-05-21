@@ -3,5 +3,5 @@ import { ISubentity } from './Subentity';
 
 export interface ICountry extends Base {
   countryName: string;
-  subentities?: ISubentity;
+  subentities?: ISubentity[];
 }

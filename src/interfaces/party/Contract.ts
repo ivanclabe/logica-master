@@ -1,13 +1,12 @@
-import Base from '../extends/Base';
-import { IOptionType } from '../common/OptionType';
+import Base, { OptionType, Amount } from '../extends/Base';
 import { IPeriod } from '../common/Period';
 
 export interface IContract extends Base {
-  ContractType: IOptionType;
+  ContractType: OptionType;
   issueDate: Date;
   currencyCode: string;
   description?: string[];
   validityPeriod: IPeriod[];
-  baseAmount: number;
-  amount: number;
+  baseAmount: Amount;
+  amount: Amount;
 }

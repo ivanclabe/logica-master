@@ -17,6 +17,28 @@ export enum statusCodeType {
   DELETED = 'deleted'
 }
 
+export enum optionTypesType {
+  CHARGE_TYPE = 'chargeType',
+  CURRENCY_TYPE = 'currencyType',
+  DOCUMENT_TYPE = 'documentType',
+  IDENTIFICATION_TYPE = 'identificationType',
+  PAYMENT_MEAN = 'paymentMean',
+  PAYMENT_METHOD = 'paymentMethod',
+  PRICELIST_TYPE = 'priceListType',
+  TAX_TYPE = 'taxType',
+  TAX_LEVEL = 'taxLevel',
+  TAX_RATE = 'taxRate',
+  MEASURE_UNIT = 'measureUnit'
+}
+
+export interface OptionType {
+  index?: number;
+  optionName: string;
+  description?: string[];
+  defaultValue?: boolean;
+  _type: optionTypesType;
+}
+
 /**
  * Interfaz que describe un identificador
  */
@@ -58,10 +80,13 @@ export interface Identifier {
 
 /** Interfaz que define un codigo */
 export interface Code {
-  index: number;
+  index?: number;
 
   /** Un tipo de identificador */
   identifier?: Identifier;
+
+  /** Un indica un tipo de codigo. */
+  codeType?: OptionType;
 
   codeID: number | string;
 

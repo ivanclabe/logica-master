@@ -1,4 +1,4 @@
-import Base from '../extends/Base';
+import Base, { OptionType } from '../extends/Base';
 import { IItemProperty } from './ItemProperty';
 
 export enum itemTypes {
@@ -10,7 +10,7 @@ export enum itemTypes {
  * Una interfaz para describir un item.
  */
 export interface IItem extends Base {
-  itemName: string[];
+  name: string[];
   description?: string[];
   measureUnit?: string;
 
@@ -21,5 +21,11 @@ export interface IItem extends Base {
   packQuantity?: number;
   brandName: string[];
   keyword?: string[];
+
+  /**
+   * Una categoría de impuestos aplicable a este
+   * artículo.
+   * */
+  taxCategory?: OptionType[];
   additionalProperty?: IItemProperty[];
 }
