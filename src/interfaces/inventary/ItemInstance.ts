@@ -1,7 +1,13 @@
 import Base from '../extends/Base';
-import { IItem } from './Item';
-import { ILotIdentification } from './LotIdentification';
-import { IItemProperty } from './ItemProperty';
+import { IItem, IItemProperty } from './Item';
+
+export interface ILotIdentification extends Base {
+  lotNumber: string;
+  /** La fecha de caducidad del lote. */
+  expiryDate: Date;
+  note?: string[];
+  itemInstance: IItemInstance;
+}
 
 /**
  * Una interfaz para describir una instancia específica

@@ -17,7 +17,7 @@ export enum statusCodeType {
   DELETED = 'deleted'
 }
 
-export enum optionTypesType {
+export enum groupOptionsTypesType {
   CHARGE_TYPE = 'chargeType',
   CURRENCY_TYPE = 'currencyType',
   DOCUMENT_TYPE = 'documentType',
@@ -31,12 +31,13 @@ export enum optionTypesType {
   MEASURE_UNIT = 'measureUnit'
 }
 
-export interface OptionType {
+export interface GroupOptionType {
   index?: number;
+  groupType: groupOptionsTypesType;
+  optionCode?: string;
   optionName: string;
   description?: string[];
-  defaultValue?: boolean;
-  _type: optionTypesType;
+  main?: boolean;
 }
 
 /**
@@ -44,10 +45,12 @@ export interface OptionType {
  */
 export interface Identifier {
   /** Codigo del identificador */
-  identifierID?: string;
+  identifierCode?: string;
 
   /** Nombre del identificador */
   identifierName?: string;
+
+  OptionType: GroupOptionType;
 
   prefix?: string;
 
@@ -85,8 +88,8 @@ export interface Code {
   /** Un tipo de identificador */
   identifier?: Identifier;
 
-  /** Un indica un tipo de codigo. */
-  codeType?: OptionType;
+  /** Un tipo de codigo. */
+  codeType?: GroupOptionType;
 
   codeID: number | string;
 
@@ -110,6 +113,15 @@ export interface MetaOptions {
 }
 
 export default interface Base extends MetaOptions {
+  /**
+   * Un número que indica el orden de este documento
+   * en la secuencia. EJ: 1, 2, 3, 4, etc.
+   */
+  sequence?: number;
+
+  /**
+   * Un código para el documento
+   */
   code?: Code | Code[];
   documentStatusCode: statusCodeType;
 

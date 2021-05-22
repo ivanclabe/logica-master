@@ -1,12 +1,35 @@
-import Base, { OptionType, Amount } from '../extends/Base';
+import Base, { GroupOptionType, Amount } from '../extends/Base';
 import { IPeriod } from '../common/Period';
+import { IPartyReference } from './Party';
+import { IAllowanceCharge } from '../common/AllowanceCharge';
 
 export interface IContract extends Base {
-  ContractType: OptionType;
-  issueDate: Date;
-  currencyCode: string;
+  contractType: GroupOptionType;
+  contractDate: Date;
+
+  party: IPartyReference;
+
+  /**
+   * Un código que indica la moneda predeterminada
+   * para este documento.
+   */
+  currencyCode: GroupOptionType;
   description?: string[];
-  validityPeriod: IPeriod[];
+  validityPeriod?: IPeriod[];
+
+  /**
+   * El monto monetario al inicial.
+   */
   baseAmount: Amount;
-  amount: Amount;
+
+  /**
+   * Un descuento o cargo que se aplica a un componente
+   * del precio.
+   */
+  allowanceCharge?: IAllowanceCharge[];
+
+  /**
+   * EL monto monetario gastado
+   */
+  spentAmount: Amount;
 }

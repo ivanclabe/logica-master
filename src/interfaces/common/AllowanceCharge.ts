@@ -1,19 +1,11 @@
-import Base, { Amount } from '../extends/Base';
-import { IOptionType } from '../common/OptionType';
+import Base, { Amount, GroupOptionType } from '../extends/Base';
 
 /**
  * Interfaz para describir información sobre un cargo o
  * descuento aplicado a un componente de precio.
  */
 export interface IAllowanceCharge extends Base {
-  chargeType?: IOptionType;
-
-  /**
-   * Un número que indica el orden de esta asignación o
-   * cargo en la secuencia de cálculos aplicados cuando hay
-   * múltiples asignaciones o cargos. EJ: 1, 2, 3, 4, etc.
-   */
-  sequence?: number;
+  chargeType?: GroupOptionType;
 
   /**
    * Un indicador que describe un cargo (verdadero) o un
@@ -41,7 +33,7 @@ export interface IAllowanceCharge extends Base {
    */
   baseAmount?: Amount;
 
-  /** }
+  /**
    * La asignación o cargo por artículo; la asignación o cargo
    * total se calcula multiplicando el monto por unidad por la
    * cantidad de artículos, ya sea a nivel de la línea de

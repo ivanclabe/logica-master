@@ -1,9 +1,20 @@
-import Base, { OptionType } from '../extends/Base';
-import { IItemProperty } from './ItemProperty';
+import Base, { GroupOptionType } from '../extends/Base';
 
 export enum itemTypes {
   PRODUCT = 'product',
   SERVICE = 'service'
+}
+
+export enum itemPropertyTypes {
+  CATEGORY = 'category',
+  GROUP = 'group',
+  CLASS = 'class'
+}
+
+export interface IItemProperty extends Base {
+  propertyType?: itemPropertyTypes;
+  propertyName: string;
+  description?: string[];
 }
 
 /**
@@ -26,6 +37,6 @@ export interface IItem extends Base {
    * Una categoría de impuestos aplicable a este
    * artículo.
    * */
-  taxCategory?: OptionType[];
+  taxCategory?: GroupOptionType[];
   additionalProperty?: IItemProperty[];
 }
