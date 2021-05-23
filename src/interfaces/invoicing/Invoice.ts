@@ -6,6 +6,8 @@ import { ITax } from '../common/Tax';
 import { IPayment } from '../common/Payment';
 import { IPaymentMean } from '../common/PaymentMean';
 import { IPriceListLine } from '../inventary/PriceList';
+import { IOrder, IOrderLine } from '../ordering/Order';
+import { IContract } from '../party/Contract';
 
 export enum invoiceTypes {
   INVOICE = 'invoice',
@@ -33,7 +35,7 @@ export interface IInvoiceLine extends BaseMovLine {
    * Una referencia a una línea de pedido asociada
    * con esta línea de factura.
    */
-  orderLineReference?: string[];
+  orderLineReference?: IOrderLine[];
 
   /**
    * Una asignación o cargo asociado con esta línea
@@ -62,6 +64,7 @@ export interface IInvoice extends BaseMov {
   dueDate?: Date;
 
   sellerParty: IPartyReference;
+
   customerParty: IPartyReference;
 
   invoiceType: invoiceTypes;
@@ -70,8 +73,8 @@ export interface IInvoice extends BaseMov {
    * Una referencia al Pedido al que está asociada esta
    * Factura.
    */
-  orderReference?: string;
-  contract?: string[];
+  orderReference?: IOrder[];
+  contract?: IContract[];
 
   /** Medios de pago previstos. */
   paymentMeans?: IPaymentMean[];

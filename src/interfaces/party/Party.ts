@@ -14,13 +14,13 @@ export interface IPartyReference extends Base {
 export interface IContact extends Base {
   name: string;
   email?: string;
-  phone?: string;
+  phone?: string[];
   note?: string[];
 }
 
 export interface IParty extends Base {
   organizationName: string[];
-  name?: string;
+  firstname?: string;
   lastname?: string;
   contracts?: IContract[];
   location?: {
@@ -28,7 +28,10 @@ export interface IParty extends Base {
     description?: string[];
   };
   email: string;
+  phone: string[];
   logo?: string;
   website?: string;
+
+  /** El contacto principal de este party. */
   contact?: IContact;
 }

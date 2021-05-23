@@ -13,15 +13,18 @@ export enum itemPropertyTypes {
 
 export interface IItemProperty extends Base {
   propertyType?: itemPropertyTypes;
-  propertyName: string;
-  description?: string[];
+  name: string;
+  nameCode?: string;
+  value?: string;
+  valueCode?: string;
 }
 
 /**
  * Una interfaz para describir un item.
  */
 export interface IItem extends Base {
-  name: string[];
+  name: string;
+  shortName?: string;
   description?: string[];
   measureUnit?: string;
 
