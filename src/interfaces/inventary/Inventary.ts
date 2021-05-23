@@ -3,34 +3,22 @@ import { IPeriod } from '../common/Period';
 import { ILotIdentification } from './ItemInstance';
 
 export interface BaseQuantity {
-  /**
-   * Cantidad Recibida
-   */
+  /** Cantidad Recibida */
   receivedQuantity?: number;
 
-  /**
-   * Cantidad Ordenada
-   */
+  /** Cantidad Ordenada */
   onOrderQuantity?: number;
 
-  /**
-   * Cantidad Enviada
-   */
+  /** Cantidad Enviada */
   shippedQuantity?: number;
 
-  /**
-   * Cantidad asignada
-   */
+  /** Cantidad asignada */
   allocatedQuantity?: number;
 
-  /**
-   * Cantidad Pedido de vuelta
-   */
+  /** Cantidad Pedido de vuelta */
   backOrderedQuantity?: number;
 
-  /**
-   * Nivel Inicial
-   */
+  /** Nivel Inicial */
   initLevelQuantity?: number;
 
   /**
@@ -55,7 +43,7 @@ export interface BaseQuantity {
 /** Interfaz que describe un lote inventariado */
 export interface ILotInventary extends Base, BaseQuantity {
   inventaryLine: IInventaryLine;
-  lotIdentification: ILotIdentification;
+  lotsIdentification: ILotIdentification;
 }
 
 /** Interfaz que describe una linea de inventario */
