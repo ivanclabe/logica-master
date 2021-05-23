@@ -43,10 +43,12 @@ export interface Monetary {
 export interface BaseMovLine extends Base {
   item: IItem;
 
+  note?: string[];
+
   /**
    * La cantidad (de items) en esta línea de movimiento.
    */
-  invoicedQuantity: number;
+  quantity: number;
 
   /**
    * El monto total de esta línea de movimiento,
@@ -54,8 +56,6 @@ export interface BaseMovLine extends Base {
    * neto de impuestos.
    */
   lineAmount: Amount;
-
-  note?: string[];
 }
 
 export interface BaseMov extends Base {
@@ -65,7 +65,7 @@ export interface BaseMov extends Base {
    */
   documentDate: Date;
 
-  /** Un período al que se aplica la factura. */
+  /** Un período al que se aplica el movimiento. */
   documentPeriod?: IPeriod;
 
   /**

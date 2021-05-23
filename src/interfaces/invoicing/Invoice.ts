@@ -74,6 +74,7 @@ export interface IInvoice extends BaseMov {
    * Factura.
    */
   orderReference?: IOrder[];
+
   contract?: IContract[];
 
   /** Medios de pago previstos. */
