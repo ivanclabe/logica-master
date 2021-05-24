@@ -1,37 +1,23 @@
-import { Schema, Document } from 'mongoose';
+import { Schema } from 'mongoose';
 
-import {
-  ISequenceIdentifier,
-  DOCUMENT_NAME as SequenceIdentifierModelName
-} from '../../common/sequenceIdentifier';
+import { Code } from '../../../../interfaces/extends/Base';
+import { DOCUMENT_NAME as IdentifierModelModelName } from '../../common/identifier';
+import { DOCUMENT_NAME as GroupOptionTypeModelName } from '../../common/groupOptionType';
 
-export interface ICode extends Document {
-  identifier?: ISequenceIdentifier['id'];
-  codeID: string;
-  extendedID?: string;
-  isCodeMain?: boolean;
-}
+const CodeSchemaFields: Record<keyof Code, any> = {
+  index: { type: Number, min: 0 },
+  identifier: {
+    type: Schema.Types.ObjectId,
+    ref: IdentifierModelModelName
+  },
+  codeType: { type: Schema.Types.ObjectId, ref: GroupOptionTypeModelName },
+  codeID: { type: String, trim: true, required: true },
+  extendedID: { type: String, trim: true },
+  main: { type: Boolean, default: false }
+};
 
 /**
- *
- * Esquema para describir una precio
- *
  * @name codeSchema
- * @description Esquema para describir información
- * sobre un codigo
  * @returns {Schema}
  */
-export const codeSchema: Schema = new Schema(
-  {
-    identifier: {
-      type: Schema.Types.ObjectId,
-      ref: SequenceIdentifierModelName
-    },
-    codeID: { type: String, trim: true, required: true },
-    extendedID: { type: String, trim: true },
-    isCodeMain: { type: Boolean, default: false }
-  },
-  {
-    _id: false
-  }
-);
+export const codeSchema: Schema = new Schema(CodeSchemaFields, { _id: false });

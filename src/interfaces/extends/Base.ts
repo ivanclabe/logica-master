@@ -6,7 +6,7 @@ export type ValueRange = {
 };
 
 export type DateRange = {
-  startDate?: Date;
+  startDate: Date;
   endDate?: Date;
 };
 
@@ -37,7 +37,7 @@ export interface GroupOptionType {
   optionCode?: string;
   optionName: string;
   description?: string[];
-  main?: boolean;
+  main: boolean;
 }
 
 /**
@@ -50,7 +50,7 @@ export interface Identifier {
   /** Nombre del identificador */
   identifierName?: string;
 
-  OptionType: GroupOptionType;
+  optionType: GroupOptionType;
 
   prefix?: string;
 
@@ -78,7 +78,7 @@ export interface Identifier {
   validity?: DateRange[];
 
   /** Indica si es el identificador principal */
-  main?: boolean;
+  main: boolean;
 }
 
 /** Interfaz que define un codigo */

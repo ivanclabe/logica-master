@@ -3,7 +3,7 @@ import { Schema, Document } from 'mongoose';
 import {
   IOptionType,
   DOCUMENT_NAME as OptionTypeModelName
-} from '../../common/optionType';
+} from '../../common/groupOptionType';
 import { IParty, DOCUMENT_NAME as PartyModelName } from '../../party/party';
 
 export interface IAssignedIdentification extends Document {

@@ -18,7 +18,7 @@ import {
 } from '../shared/subdocuments/paymentMean';
 
 import { COLLECTION_NAME as PeriodModelName, IPeriod } from '../common/period';
-import { COLLECTION_NAME as OptionTypeModelName } from '../common/optionType';
+import { COLLECTION_NAME as OptionTypeModelName } from '../common/groupOptionType';
 import {
   IInvoiceLine,
   COLLECTION_NAME as InvoiceLineModelName

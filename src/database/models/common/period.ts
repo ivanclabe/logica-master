@@ -1,16 +1,14 @@
 import { Schema, model, Document } from 'mongoose';
+import { IPeriod } from '../../../interfaces/common/Period';
 
 export const DOCUMENT_NAME = 'Period';
 export const COLLECTION_NAME = 'periods';
 
-export interface IPeriod extends Document {
-  periodCode: string;
-  startDate?: Date;
-  endDate?: Date;
-  description?: [string];
-}
+export interface IPeriodDoc extends IPeriod, Document {}
 
 const periodSchema: Schema = new Schema({
+  sequence: Number,
+  code:
   periodCode: {
     type: String,
     unique: true,
@@ -21,11 +19,10 @@ const periodSchema: Schema = new Schema({
     default: Date.now
   },
   endDate: Date,
-  // Una descripción de este período, expresada como texto.
   description: [String]
 });
 
-export const PeriodModel = model<IPeriod>(
+export const PeriodModel = model<IPeriodDoc>(
   DOCUMENT_NAME,
   periodSchema,
   COLLECTION_NAME

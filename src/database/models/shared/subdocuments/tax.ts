@@ -3,7 +3,7 @@ import { Schema, Types, Document, Decimal128 } from 'mongoose';
 import {
   IOptionType,
   DOCUMENT_NAME as OptionTypeModelName
-} from '../../common/optionType';
+} from '../../common/groupOptionType';
 
 export interface ITaxSubTotal extends Document {
   taxableAmount?: Decimal128;
