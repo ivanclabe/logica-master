@@ -100,7 +100,7 @@ export interface Code {
   main?: boolean;
 }
 
-export type TraceReport = {
+export type TraceRoute = {
   traceCode: Code;
   traceAt: Date;
   referencedUUID: string;
@@ -108,8 +108,8 @@ export type TraceReport = {
 };
 
 export interface MetaOptions {
-  created?: TraceReport;
-  updated?: TraceReport[];
+  createdAt?: Date; // TraceReport;
+  updatedAt?: Date; // TraceReport[];
 }
 
 export default interface Base extends MetaOptions {
@@ -123,7 +123,7 @@ export default interface Base extends MetaOptions {
    * Un código para el documento
    */
   code?: Code | Code[];
-  documentStatusCode: statusCodeType;
+  statusCode: statusCodeType;
 
   /**
    * Un identificador único universal para una

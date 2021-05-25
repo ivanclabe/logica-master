@@ -1,4 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
+
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
 import { IPeriod } from '../../../interfaces/common/Period';
 
 export const DOCUMENT_NAME = 'Period';
@@ -7,13 +9,7 @@ export const COLLECTION_NAME = 'periods';
 export interface IPeriodDoc extends IPeriod, Document {}
 
 const periodSchema: Schema = new Schema({
-  sequence: Number,
-  code:
-  periodCode: {
-    type: String,
-    unique: true,
-    required: true
-  },
+  ...{ BaseSchemaFields },
   startDate: {
     type: Date,
     default: Date.now

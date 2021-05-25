@@ -2,8 +2,8 @@ import { Schema, model, Document } from 'mongoose';
 
 import { Identifier } from '../../../interfaces/extends/Base';
 import { DOCUMENT_NAME as GroupOptionTypeModelModelName } from './groupOptionType';
-import { DateRangeSchema } from '../shared/types/dateRange';
-import { ValueRangeSchema } from '../shared/types/valueRange';
+import { dateRangeSchema } from '../shared/types/dateRange';
+import { valueRangeSchema } from '../shared/types/valueRange';
 
 export const DOCUMENT_NAME = 'Identifier';
 export const COLLECTION_NAME = 'sequences_identifiers';
@@ -20,10 +20,10 @@ const IdentifierSchemaFields: Record<keyof Identifier, any> = {
   prefix: { type: String },
   description: [String],
   sequenceNumeric: {
-    valueRange: { type: ValueRangeSchema, required: true },
+    valueRange: { type: valueRangeSchema, required: true },
     currentValue: Number
   },
-  validity: DateRangeSchema,
+  validity: dateRangeSchema,
   main: { type: Boolean, default: false }
 };
 

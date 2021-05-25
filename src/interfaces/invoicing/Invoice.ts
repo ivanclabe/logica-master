@@ -3,7 +3,7 @@ import { BaseMov, BaseMovLine } from '../extends/BaseMov';
 import { IPartyReference } from '../party/Party';
 import { IAllowanceCharge } from '../common/AllowanceCharge';
 import { ITax } from '../common/Tax';
-import { IPayment } from '../common/Payment';
+import { IPayment } from '../payment/Payment';
 import { IPaymentMean } from '../common/PaymentMean';
 import { IPriceListLine } from '../inventary/PriceList';
 import { IOrder, IOrderLine } from '../ordering/Order';

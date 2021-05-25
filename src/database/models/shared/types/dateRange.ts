@@ -6,6 +6,6 @@ const DateRangeSchemaFields: Record<keyof DateRange, any> = {
   endDate: Date
 };
 
-export const DateRangeSchema: Schema = new Schema(DateRangeSchemaFields, {
+export const dateRangeSchema: Schema = new Schema(DateRangeSchemaFields, {
   _id: false
 });

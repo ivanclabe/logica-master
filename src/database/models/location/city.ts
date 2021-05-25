@@ -1,38 +1,32 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, Model } from 'mongoose';
 
-import { ISubentity, DOCUMENT_NAME as SubentityModelName } from './subentity';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { ICity } from '../../../interfaces/location/City';
+import { DOCUMENT_NAME as SubentityModelName } from './subentity';
 
 export const DOCUMENT_NAME = 'City';
 export const COLLECTION_NAME = 'cities';
 
-export interface ICity extends Document {
-  cityCode: string;
-  cityName: string;
-  subentity: ISubentity['id'];
-}
+export interface ICityDoc extends ICity, Document {}
 
-/**
- * Esquema que describe una ciudad
- * @name City
- * @return {object} - Returna el modelo City
- */
-const citySchema: Schema = new Schema({
-  cityCode: {
-    type: String,
-    required: [true, 'cityCode field is required']
+const citySchema: Schema = new Schema(
+  {
+    /** Base Properties */
+    ...{ BaseSchemaFields },
+    /** Interface Properties */
+    cityName: { type: String, required: true },
+    subentity: {
+      type: Schema.Types.ObjectId,
+      ref: SubentityModelName,
+      required: true
+    }
   },
-  cityName: {
-    type: String,
-    required: [true, 'cityName field is required']
-  },
-  subentity: {
-    type: Schema.Types.ObjectId,
-    ref: SubentityModelName,
-    required: true
+  {
+    timestamps: true
   }
-});
+);
 
-export const CityModel = model<ICity>(
+export const CityModel: Model<ICityDoc> = model<ICityDoc>(
   DOCUMENT_NAME,
   citySchema,
   COLLECTION_NAME

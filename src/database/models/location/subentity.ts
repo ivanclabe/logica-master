@@ -1,29 +1,20 @@
 import { Schema, model, Document } from 'mongoose';
 
-import { ICountry, DOCUMENT_NAME as CountryModelName } from './country';
-import { ICity, DOCUMENT_NAME as CityModelName } from './city';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { DOCUMENT_NAME as CountryModelName } from './country';
+import { DOCUMENT_NAME as CityModelName } from './city';
+import { ISubentity } from '../../../interfaces/location/Subentity';
 
 export const DOCUMENT_NAME = 'Subentity';
 export const COLLECTION_NAME = 'subentities';
 
-export interface ISubentity extends Document {
-  subentityCode: string;
-  subentityName: string;
-  country: ICountry['id'];
-  cities?: ICity['id'][];
-}
+export interface ISubentityDoc extends ISubentity, Document {}
 
-/**
- * Modelo para describir un departamento, condado,
- * provincia o estado.
- * @name Subentity
- * @return {object} - Returna modelo Subentity
- */
 const subentitySchema: Schema = new Schema({
-  subentityCode: {
-    type: String,
-    required: [true, 'entityCode field is required']
-  },
+  /** Base Properties */
+  ...{ BaseSchemaFields },
+
+  /** Interface Properties */
   subentityName: {
     type: String,
     required: true
@@ -41,7 +32,7 @@ const subentitySchema: Schema = new Schema({
   ]
 });
 
-export const SubentityModel = model<ISubentity>(
+export const SubentityModel = model<ISubentityDoc>(
   DOCUMENT_NAME,
   subentitySchema,
   COLLECTION_NAME

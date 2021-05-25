@@ -1,26 +1,19 @@
 import { Schema, model, Document } from 'mongoose';
+import { ICountry } from '../../../interfaces/location/country';
 
-import { ISubentity, DOCUMENT_NAME as SubentityModelName } from './subentity';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { DOCUMENT_NAME as SubentityModelName } from './subentity';
 
 export const DOCUMENT_NAME = 'Country';
 export const COLLECTION_NAME = 'countries';
 
-export interface ICountry extends Document {
-  countryCode: string;
-  countryName: string;
-  subentities?: ISubentity['id'][];
-}
+export interface ICountryDoc extends ICountry, Document {}
 
-/**
- * Modelo para describir de un Pais
- * @name Country
- * @return {object} - Return Country Model
- */
 const countrySchema = new Schema({
-  countryCode: {
-    type: String,
-    required: [true, 'countryCode field is required']
-  },
+  /** Base Properties */
+  ...{ BaseSchemaFields },
+
+  /** Interface Properties */
   countryName: {
     type: String,
     required: [true, 'countryName field is required']
@@ -33,7 +26,7 @@ const countrySchema = new Schema({
   ]
 });
 
-export const CountryModel = model<ICountry>(
+export const CountryModel = model<ICountryDoc>(
   DOCUMENT_NAME,
   countrySchema,
   COLLECTION_NAME

@@ -6,6 +6,6 @@ const ValueRangeSchemaFields: Record<keyof ValueRange, any> = {
   min: Number
 };
 
-export const ValueRangeSchema: Schema = new Schema(ValueRangeSchemaFields, {
+export const valueRangeSchema: Schema = new Schema(ValueRangeSchemaFields, {
   _id: false
 });
