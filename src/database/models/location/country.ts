@@ -11,7 +11,7 @@ export interface ICountryDoc extends ICountry, Document {}
 
 const countrySchema = new Schema({
   /** Base Properties */
-  ...{ BaseSchemaFields },
+  ...BaseSchemaFields,
 
   /** Interface Properties */
   countryName: {

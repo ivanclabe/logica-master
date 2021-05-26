@@ -9,7 +9,7 @@ export const COLLECTION_NAME = 'periods';
 export interface IPeriodDoc extends IPeriod, Document {}
 
 const periodSchema: Schema = new Schema({
-  ...{ BaseSchemaFields },
+  ...BaseSchemaFields,
   startDate: {
     type: Date,
     default: Date.now

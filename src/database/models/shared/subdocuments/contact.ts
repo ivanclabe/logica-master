@@ -8,7 +8,7 @@ import { BaseSchemaFields } from '../../shared/constants/BaseSchemaFields';
 export const contactSchema: Schema = new Schema(
   {
     /** Base Properties */
-    ...{ BaseSchemaFields },
+    ...BaseSchemaFields,
 
     /** Interface Properties */
     name: { type: String, trim: true, required: true },

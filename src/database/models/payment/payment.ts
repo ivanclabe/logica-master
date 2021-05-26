@@ -1,19 +1,16 @@
 import { Schema, Document, Types, model } from 'mongoose';
-import { IPayment } from '../../../interfaces/payment/Payment';
 
 import { BaseWithSequenceSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { IPayment } from '../../../interfaces/payment/Payment';
 
 export const DOCUMENT_NAME = 'Payment';
 export const COLLECTION_NAME = 'payments';
 
 export interface IPaymentDoc extends IPayment, Document {}
 
-/**
- * @name Payment
- */
 const paymentSchema: Schema = new Schema(
   {
-    ...{ BaseWithSequenceSchemaFields },
+    ...BaseWithSequenceSchemaFields,
     paidDate: { type: Date, default: Date.now },
     paidAmount: { type: Types.Decimal128, default: 0 }
   },

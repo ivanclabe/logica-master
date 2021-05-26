@@ -12,7 +12,7 @@ export interface ICityDoc extends ICity, Document {}
 const citySchema: Schema = new Schema(
   {
     /** Base Properties */
-    ...{ BaseSchemaFields },
+    ...BaseSchemaFields,
     /** Interface Properties */
     cityName: { type: String, required: true },
     subentity: {

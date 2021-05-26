@@ -1,11 +1,10 @@
-import Base, { GroupOptionType, Amount } from '../extends/Base';
-import { IPeriod } from '../common/Period';
+import Base, { GroupOptionType, Amount, DateRange } from '../extends/Base';
 import { IPartyReference } from './Party';
 import { IAllowanceCharge } from '../common/AllowanceCharge';
 
 export interface IContract extends Base {
   contractType: GroupOptionType;
-  contractDate: Date;
+  contractDate?: Date;
 
   party: IPartyReference;
 
@@ -15,7 +14,7 @@ export interface IContract extends Base {
    */
   currencyCode: GroupOptionType;
   description?: string[];
-  validityPeriod?: IPeriod[];
+  validityPeriod?: DateRange[];
 
   /**
    * El monto monetario al inicial.

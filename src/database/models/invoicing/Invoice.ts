@@ -10,7 +10,7 @@ import {
   allowanceChargeSchema
 } from '../shared/subdocuments/allowanceCharge';
 import { ITax, taxSchema } from '../shared/subdocuments/tax';
-import { IPayment, paymentSchema } from '../common/payment';
+import { IPayment, paymentSchema } from '../payment/payment';
 import { IMonetary, monetarySchema } from '../shared/subdocuments/monetary';
 import {
   IPaymentMean,

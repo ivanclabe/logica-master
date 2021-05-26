@@ -1,40 +1,11 @@
-import { Schema, Types, Document, Decimal128 } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 
-import {
-  IOptionType,
-  DOCUMENT_NAME as OptionTypeModelName
-} from '../../common/groupOptionType';
-
-export interface ITaxSubTotal extends Document {
-  taxableAmount?: Decimal128;
-  taxAmount: Decimal128;
-  percent: number;
-  taxCategory: IOptionType;
-}
-
-export interface ITax extends Document {
-  taxSubtotals: [ITaxSubTotal];
-}
+import { BaseWithSequenceSchemaFields } from '../constants/BaseSchemaFields';
+import { DOCUMENT_NAME as GroupOptionTypeModelName } from '../../common/groupOptionType';
 
 export const taxSubtotalSchema: Schema = new Schema({
-  /**
-   * El importe neto al que se aplica el porcentaje
-   * (tasa) de impuestos para calcular el importe del
-   * impuesto.
-   */
-  taxableAmount: {
-    type: Types.Decimal128,
-    default: 0
-  },
-  /**
-   * Base Imponible sobre la que se calcula el valor
-   * del tributo
-   */
-  taxAmount: {
-    type: Types.Decimal128,
-    default: 0,
-    required: true
-  },
+  taxableAmount: { type: Types.Decimal128, default: 0 },
+  taxAmount: { type: Types.Decimal128, default: 0 },
   percent: {
     type: Number,
     min: 0,
@@ -44,7 +15,7 @@ export const taxSubtotalSchema: Schema = new Schema({
   },
   taxCategory: {
     type: Types.ObjectId,
-    ref: OptionTypeModelName,
+    ref: GroupOptionTypeModelName,
     required: true
   }
 });
@@ -52,14 +23,9 @@ export const taxSubtotalSchema: Schema = new Schema({
 /**
  * Esquema que describe un esquema de impuestos
  * @name taxSchema
- * @return {object} - Retorna un Schema
  */
 export const taxSchema: Schema = new Schema({
-  /**
-   * Lista de subtotales cuya suma es igual al monto
-   * total de impuestos para un esquema de impuestos
-   * particular.
-   */
+  ...BaseWithSequenceSchemaFields,
   taxSubtotals: [taxSubtotalSchema]
 });
 

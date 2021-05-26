@@ -1,48 +1,48 @@
-import { Schema, Document, Types } from 'mongoose';
+import { Schema, Document, Types, model } from 'mongoose';
 
-export const DOCUMENT_NAME = 'City';
-export const COLLECTION_NAME = 'cities';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { IContact } from '../../../interfaces/party/Party';
+import { DOCUMENT_NAME as GroupOptionTypeModelName } from '../common/groupOptionType';
+import { partyReferenceSchema } from '../shared/subdocuments/partyReference';
+import { dateRangeSchema } from '../shared/types/dateRange';
+import { allowanceChargeSchema } from '../shared/subdocuments/allowanceCharge';
+
+export const DOCUMENT_NAME = 'Contract';
+export const COLLECTION_NAME = 'contracts';
+
+export interface IContractDoc extends IContact, Document {}
 
 export const contractSchema: Schema = new Schema(
   {
-    referenceId: {
-      type: String,
+    ...BaseSchemaFields,
+    contractType: {
+      type: Schema.Types.ObjectId,
+      ref: GroupOptionTypeModelName,
       required: true
     },
-    issueDate: {
+    contractDate: {
       type: Date,
+      default: Date.now()
+    },
+    party: { type: partyReferenceSchema, required: true },
+    currencyCode: {
+      type: Schema.Types.ObjectId,
+      ref: GroupOptionTypeModelName,
       required: true
     },
     description: [String],
-    validityPeriod: [
-      {
-        startDate: { type: Date, default: Date.now },
-        endDate: { type: Date, required: true }
-      }
-    ],
-    currencyCode: { type: String },
-    /** El monto de esta asignado a este contrato. */
-    baseAmount: { type: amountType, required: true },
-    /** El monto consumido de este contrato */
-    amount: { type: amountType, required: true },
-    /**
-     * La parte que emitió el documento de referencia.
-     */
-    issuerParty: {
-      type: Schema.Types.ObjectId,
-      ref: 'OrganizationParty',
-      required: true
-    },
-    customersParties: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'CustomerParty'
-      }
-    ]
+    validityPeriod: [dateRangeSchema],
+    baseAmount: { type: Types.Decimal128, required: true },
+    allowanceCharge: [allowanceChargeSchema],
+    spentAmount: { type: Types.Decimal128, required: true }
   },
   {
-    collection: 'contrats'
+    timestamps: true
   }
 );
 
-export const Contract = connect.model('Contract', contractSchema);
+export const Contract = model<IContractDoc>(
+  DOCUMENT_NAME,
+  contractSchema,
+  COLLECTION_NAME
+);

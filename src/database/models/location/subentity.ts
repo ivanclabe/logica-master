@@ -12,7 +12,7 @@ export interface ISubentityDoc extends ISubentity, Document {}
 
 const subentitySchema: Schema = new Schema({
   /** Base Properties */
-  ...{ BaseSchemaFields },
+  ...BaseSchemaFields,
 
   /** Interface Properties */
   subentityName: {
