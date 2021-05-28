@@ -12,7 +12,7 @@ export enum itemPropertyTypes {
 }
 
 export interface IItemProperty extends Base {
-  propertyType?: itemPropertyTypes;
+  propertyType: itemPropertyTypes;
   name: string;
   nameCode?: string;
   value?: string;
@@ -42,4 +42,5 @@ export interface IItem extends Base {
    * */
   taxCategory?: GroupOptionType[];
   additionalProperty?: IItemProperty[];
+  _type: itemTypes;
 }

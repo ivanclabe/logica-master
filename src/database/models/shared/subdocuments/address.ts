@@ -14,7 +14,7 @@ export const addressSchema: Schema = new Schema(
     city: {
       type: Schema.Types.ObjectId,
       ref: CityModelName,
-      required: [true, 'City field is required']
+      required: true
     },
     postalZone: String
   },

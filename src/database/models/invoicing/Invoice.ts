@@ -1,6 +1,10 @@
 import { Schema, Document, model } from 'mongoose';
 
 import {
+  BaseMovSchemaFields,
+  BaseSchemaFields
+} from '../shared/constants/BaseSchemaFields';
+import {
   IPartyReference,
   partyReferenceSchema
 } from '../shared/subdocuments/partyReference';
@@ -12,10 +16,7 @@ import {
 import { ITax, taxSchema } from '../shared/subdocuments/tax';
 import { IPayment, paymentSchema } from '../payment/payment';
 import { IMonetary, monetarySchema } from '../shared/subdocuments/monetary';
-import {
-  IPaymentMean,
-  paymentMeanSchema
-} from '../shared/subdocuments/paymentMean';
+import { IPaymentMean, paymentMeanSchema } from '../payment/paymentMean';
 
 import { COLLECTION_NAME as PeriodModelName, IPeriod } from '../common/period';
 import { COLLECTION_NAME as OptionTypeModelName } from '../common/groupOptionType';
@@ -23,83 +24,26 @@ import {
   IInvoiceLine,
   COLLECTION_NAME as InvoiceLineModelName
 } from './InvoiceLine';
+import { IInvoice } from '../../../interfaces/invoicing/Invoice';
 
-export const DOCUMENT_NAME = 'Document';
-export const COLLECTION_NAME = 'documents';
+export const DOCUMENT_NAME = 'Invoice';
+export const COLLECTION_NAME = 'invoices';
 
-export enum documentTypes {
-  INVOICE = 'invoice',
-  ORDER = 'order'
-}
+export interface IInvoiceDoc extends IInvoice, Document {}
 
-export interface IInvoice extends Document {
-  invoiceCode: ICode;
-  issueDate: Date;
-  dueDate?: Date;
-  currencyCode: string;
-  sellerParty: IPartyReference;
-  customerParty: IPartyReference;
-  note?: string[];
-  period?: IPeriod['id'];
-  orderReference?: string;
-  contract?: string[];
-  paymentMeans?: IPaymentMean[];
-  prepaidPayment?: IPayment[];
-  allowanceCharge?: IAllowanceCharge[];
-  tax?: ITax[];
-  monetaryTotal: IMonetary;
-  invoiceLines: IInvoiceLine['id'][];
-  _type: documentTypes;
-}
-
-/**
- * Modelo para describir de un documento
- * @name Document
- * @return {object} - Return Documento Model
- */
 const invoiceSchema = new Schema({
-  invoiceCode: {
-    type: codeSchema,
-    required: true
-  },
-  issueDate: {
-    type: Date,
-    required: true
-  },
+  ...BaseMovSchemaFields,
   dueDate: Date,
-  currencyCode: {
-    type: Schema.Types.ObjectId,
-    ref: OptionTypeModelName
-  },
+
   /** Vendedor que crea el documento */
   sellerParty: partyReferenceSchema,
+
   customerParty: partyReferenceSchema,
-  note: [String],
-  period: {
-    type: Schema.Types.ObjectId,
-    ref: PeriodModelName
-  },
-  /** Medios de pago previstos */
-  paymentMeans: [paymentMeanSchema],
-  /** Un pago prepago */
+
+  // paymentMeans: [paymentMeanSchema],
   prepaidPayment: [paymentSchema],
-  /**
-   * Un descuento o cargo que se aplica a un componente
-   * del precio.
-   */
   allowanceCharge: [allowanceChargeSchema],
-  /**
-   * El monto total de un tipo específico de impuesto.
-   */
   tax: [taxSchema],
-  /**
-   * El monto total pagadero en la factura, incluidas
-   * las asignaciones, los cargos y los impuestos.
-   */
-  monetaryTotal: {
-    type: monetarySchema,
-    required: true
-  },
   /** Describe un artículo de factura. */
   invoiceLines: [
     {

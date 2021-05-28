@@ -1,5 +1,4 @@
-import Base, { Amount } from '../extends/Base';
-import { IPeriod } from '../common/Period';
+import Base, { Amount, DateRange } from '../extends/Base';
 import { IAllowanceCharge } from '../common/AllowanceCharge';
 import { IItem } from './Item';
 
@@ -21,7 +20,7 @@ export interface IPriceList extends Base {
    * Un período durante el cual esta lista de
    * precios es válida.
    */
-  validPeriod?: IPeriod[];
+  validPeriod?: DateRange[];
 
   pricelistLine: IPriceListLine[];
 }

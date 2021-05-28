@@ -1,49 +1,43 @@
-import { Schema, Document, model, Types, Decimal128 } from 'mongoose';
+import { Schema, Document, model, Types } from 'mongoose';
 
-import { IPriceList, DOCUMENT_NAME as PriceListModelName } from './priceList';
-import {
-  IAllowanceCharge,
-  allowanceChargechema
-} from './subdocuments/allowanceCharge';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { IPriceList } from '../../../interfaces/inventary/PriceList';
+import { DOCUMENT_NAME as PriceListModelName } from './priceList';
+import { allowanceChargeSchema } from '../shared/subdocuments/allowanceCharge';
 
 export const DOCUMENT_NAME = 'PriceListLine';
-export const COLLECTION_NAME = 'pricesListsLines';
+export const COLLECTION_NAME = 'pricesLists_lines';
 
-export interface IPriceListLine extends Document {
-  priceList: IPriceList['id'];
-  item: string;
-  baseAmount: Decimal128;
-  allowanceCharges: IAllowanceCharge;
-  amount: Decimal128;
-}
+export interface IPriceListLineDoc extends IPriceList, Document {}
 
-const priceListLineSchema: Schema = new Schema({
-  priceList: {
-    type: Schema.Types.ObjectId,
-    ref: PriceListModelName,
-    required: true
+const priceListLineSchema: Schema = new Schema(
+  {
+    ...BaseSchemaFields,
+    priceList: {
+      type: Schema.Types.ObjectId,
+      ref: PriceListModelName,
+      required: true
+    },
+    item: {
+      type: Schema.Types.ObjectId,
+      ref: 'Item',
+      required: true
+    },
+    baseAmount: {
+      type: Types.Decimal128,
+      default: 0
+    },
+    allowanceCharges: [allowanceChargeSchema],
+    amount: {
+      type: Types.Decimal128,
+      default: 0,
+      required: true
+    }
   },
-  item: {
-    type: Schema.Types.ObjectId,
-    ref: 'Item',
-    required: true
-  },
-  baseAmount: {
-    type: Types.Decimal128,
-    default: 0
-  },
-  /**
-   * Una asignación o cargo asociado con este
-   * precio.
-   */
-  allowanceCharges: [allowanceChargechema],
-  amount: {
-    type: Types.Decimal128,
-    default: 0
-  }
-});
+  { timestamps: true }
+);
 
-export const PriceListLineModel = model<IPriceListLine>(
+export const PriceListLineModel = model<IPriceListLineDoc>(
   DOCUMENT_NAME,
   priceListLineSchema,
   COLLECTION_NAME

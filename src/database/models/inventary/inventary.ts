@@ -1,17 +1,15 @@
 import { Schema, Document, model } from 'mongoose';
 
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { IInventary } from '../../../interfaces/inventary/Inventary';
+
 export const DOCUMENT_NAME = 'Inventary';
 export const COLLECTION_NAME = 'inventaries';
 
-export interface IInventary extends Document {
-  inventaryPeriod: string;
-  note: [string];
-}
+export interface IInventaryDoc extends IInventary, Document {}
 
-/**
- * Esquema para describir un inventario.
- */
 const inventarySchema: Schema = new Schema({
+  ...BaseSchemaFields,
   inventaryPeriod: {
     type: Schema.Types.ObjectId,
     ref: 'Period',
@@ -27,7 +25,7 @@ const inventarySchema: Schema = new Schema({
   ]
 });
 
-export const InventaryModel = model<IInventary>(
+export const InventaryModel = model<IInventaryDoc>(
   DOCUMENT_NAME,
   inventarySchema,
   COLLECTION_NAME

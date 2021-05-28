@@ -1,77 +1,46 @@
 import { Schema, Document, model } from 'mongoose';
 
-import { ICode, codeSchema } from '../shared/subdocuments/code';
-import {
-  IItemProperty,
-  DOCUMENT_NAME as ItemPropertyModelName
-} from './itemProperty';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { IItem, itemTypes } from '../../../interfaces/inventary/Item';
+import { DOCUMENT_NAME as ItemPropertyModelName } from './itemProperty';
+import { DOCUMENT_NAME as GroupOptionTypeModelName } from '../common/groupOptionType';
 
 export const DOCUMENT_NAME = 'Item';
 export const COLLECTION_NAME = 'items';
 
-export enum itemTypes {
-  PRODUCT = 'product',
-  SERVICE = 'service'
-}
+export interface IItemDoc extends IItem, Document {}
 
-export interface IItem extends Document {
-  itemCode: ICode[];
-  itemName: string[];
-  description?: string[];
-  measureUnit: string;
-  packQuantity: number;
-  brandName: string[];
-  keyword?: string[];
-  additionalProperty: IItemProperty[];
-}
-
-/**
- * Modelo para describir de un Item
- *
- * @name Item
- * @return {object} - Return Item Model
- */
 const itemSchema: Schema = new Schema({
-  itemCode: [
-    {
-      type: codeSchema,
-      required: true
-    }
-  ],
-  itemName: [
-    {
-      type: String,
-      trim: true,
-      required: true
-    }
-  ],
+  ...BaseSchemaFields,
+  name: {
+    type: String,
+    trim: true,
+    required: true
+  },
+  shortName: String,
   description: [String],
-  measureUnit: { type: Schema.Types.ObjectId, ref: 'OperSetting' },
-  /**
-   * La unidad de cantidad de embalaje;
-   * El número de subunidades que componen este elemento.
-   */
+  measureUnit: String,
   packQuantity: Number,
   brandName: [String],
-
-  /**
-   * La unidad de cantidad de embalaje;
-   * El número de subunidades que componen este elemento.
-   */
   keyword: [String],
+  taxCategory: {
+    type: Schema.Types.ObjectId,
+    ref: GroupOptionTypeModelName
+  },
   additionalProperty: [
     {
       type: Schema.Types.ObjectId,
       ref: ItemPropertyModelName
     }
   ],
-  __t: {
+  _type: {
     type: String,
-    enum: Object.values(itemTypes)
+    enum: Object.values(itemTypes),
+    required: true
   }
 });
 
-export const ItemModel = model<IItem>(
+export const ItemModel = model<IItemDoc>(
   DOCUMENT_NAME,
   itemSchema,
   COLLECTION_NAME

@@ -1,6 +1,6 @@
 import Base, { Amount, GroupOptionType } from './Base';
 import { IItem } from '../inventary/Item';
-import { IPeriod } from '../../database/models/common/period';
+import { IPeriod } from '../common/Period';
 
 /**
  * Interfaz para definir un total monetario.

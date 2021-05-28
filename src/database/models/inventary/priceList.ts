@@ -1,31 +1,33 @@
 import { Schema, Document, model } from 'mongoose';
 
-import { periodSchema, IPeriod } from '../shared/subdocuments/period';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import { IPriceList } from '../../../interfaces/inventary/PriceList';
+import { dateRangeSchema } from '../shared/types/dateRange';
 
 export const DOCUMENT_NAME = 'PriceList';
 export const COLLECTION_NAME = 'pricesLists';
 
-export interface IPriceList extends Document {
-  listName: string;
-  validPeriod?: [IPeriod];
-}
+export interface IPriceListDoc extends IPriceList, Document {}
 
-/**
- * Esquema para describir un lista de precio.
- */
-const pricelistSchema: Schema = new Schema({
-  listName: { type: String, required: true },
-  validPeriod: [periodSchema],
-  listLine: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'priceListLine',
-      required: true
-    }
-  ]
-});
+const pricelistSchema: Schema = new Schema(
+  {
+    ...BaseSchemaFields,
+    listName: { type: String, required: true },
+    validPeriod: [dateRangeSchema],
+    pricelistLine: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'priceListLine',
+        required: true
+      }
+    ]
+  },
+  {
+    timestamps: true
+  }
+);
 
-export const PriceListModel = model<IPriceList>(
+export const PriceListModel = model<IPriceListDoc>(
   DOCUMENT_NAME,
   pricelistSchema,
   COLLECTION_NAME

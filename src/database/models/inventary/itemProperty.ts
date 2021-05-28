@@ -1,41 +1,33 @@
 import { Schema, Document, model } from 'mongoose';
 
-import { ICode, codeSchema } from '../shared/subdocuments/code';
+import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
+import {
+  IItemProperty,
+  itemPropertyTypes
+} from '../../../interfaces/inventary/Item';
 
 export const DOCUMENT_NAME = 'ItemProperty';
 export const COLLECTION_NAME = 'items_properties';
 
-export enum propertyTypes {
-  CATEGORY = 'category',
-  GROUP = 'group',
-  CLASS = 'class'
-}
+export interface IItemPropertyDoc extends IItemProperty, Document {}
 
-export interface IItemProperty extends Document {
-  propertyCode: ICode;
-  propertyType?: propertyTypes;
-  propertyName: string;
-  description?: string[];
-}
-
-/**
- * Un esquema para definir un propiedades
- * para los items
- *
- * @name ItemProperty
- */
-const itemPropertySchema: Schema = new Schema({
-  propertyCode: codeSchema,
-  propertyType: {
-    type: String,
-    enum: Object.values(propertyTypes),
-    required: true
+const itemPropertySchema: Schema = new Schema(
+  {
+    ...BaseSchemaFields,
+    propertyType: {
+      type: String,
+      enum: Object.values(itemPropertyTypes),
+      required: true
+    },
+    name: { type: String, trim: true, required: true },
+    nameCode: String,
+    value: String,
+    valueCode: String
   },
-  propertyName: { type: String, trim: true, required: true },
-  description: [String]
-});
+  { timestamps: true }
+);
 
-export const ItemPropertyModel = model<IItemProperty>(
+export const ItemPropertyModel = model<IItemPropertyDoc>(
   DOCUMENT_NAME,
   itemPropertySchema,
   COLLECTION_NAME

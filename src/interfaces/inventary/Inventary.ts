@@ -1,6 +1,7 @@
 import Base from '../extends/Base';
 import { IPeriod } from '../common/Period';
 import { ILotIdentification } from './ItemInstance';
+import { IItem } from './Item';
 
 export interface BaseQuantity {
   /** Cantidad Recibida */
@@ -49,10 +50,12 @@ export interface ILotInventary extends Base, BaseQuantity {
 /** Interfaz que describe una linea de inventario */
 export interface IInventaryLine extends Base, BaseQuantity {
   inventary: IInventary;
+  item: IItem;
 }
 
 /** Interfaz que describe un inventario */
 export interface IInventary extends Base {
   inventaryPeriod: IPeriod;
   note?: string[];
+  inventariesLine: IInventaryLine[];
 }
