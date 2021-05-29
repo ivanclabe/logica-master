@@ -5,15 +5,6 @@ export interface IPrice extends Document {
   priceReference: string;
 }
 
-/**
- *
- * Esquema para describir una precio
- *
- * @name priceSchema
- * @description Esquema para describir información
- * sobre un precio
- * @returns {Schema}
- */
 export const priceSchema: Schema = new Schema(
   {
     amount: {

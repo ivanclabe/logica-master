@@ -3,6 +3,7 @@ import { Schema, Document, model } from 'mongoose';
 import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
 import { IPriceList } from '../../../interfaces/inventary/PriceList';
 import { dateRangeSchema } from '../shared/types/dateRange';
+import { DOCUMENT_NAME as PriceListLineModelName } from './priceListLine';
 
 export const DOCUMENT_NAME = 'PriceList';
 export const COLLECTION_NAME = 'pricesLists';
@@ -17,7 +18,7 @@ const pricelistSchema: Schema = new Schema(
     pricelistLine: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'priceListLine',
+        ref: PriceListLineModelName,
         required: true
       }
     ]

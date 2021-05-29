@@ -19,8 +19,6 @@ export enum statusCodeType {
 
 export enum groupOptionsTypesType {
   CHARGE_TYPE = 'chargeType',
-  CURRENCY_TYPE = 'currencyType',
-  DOCUMENT_TYPE = 'documentType',
   IDENTIFICATION_TYPE = 'identificationType',
   PAYMENT_MEAN = 'paymentMean',
   PAYMENT_METHOD = 'paymentMethod',

@@ -1,7 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
 import { BaseSchemaFields } from '../shared/constants/BaseSchemaFields';
-import { DOCUMENT_NAME as CountryModelName } from './country';
 import { DOCUMENT_NAME as CityModelName } from './city';
 import { ISubentity } from '../../../interfaces/location/Subentity';
 
@@ -19,11 +18,7 @@ const subentitySchema: Schema = new Schema({
     type: String,
     required: true
   },
-  country: {
-    type: Schema.Types.ObjectId,
-    ref: CountryModelName,
-    required: true
-  },
+  countryCode: String,
   cities: [
     {
       type: Schema.Types.ObjectId,

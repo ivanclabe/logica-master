@@ -4,7 +4,7 @@ import { IPartyReference } from '../party/Party';
 import { IAllowanceCharge } from '../common/AllowanceCharge';
 import { ITax } from '../common/Tax';
 import { IPayment } from '../payment/Payment';
-import { IPaymentMean } from '../common/PaymentMean';
+// import { IPaymentMean } from '../common/PaymentMean';
 import { IPriceListLine } from '../inventary/PriceList';
 import { IOrder, IOrderLine } from '../ordering/Order';
 import { IContract } from '../party/Contract';
@@ -78,10 +78,10 @@ export interface IInvoice extends BaseMov {
   contract?: IContract[];
 
   /** Medios de pago previstos. */
-  paymentMeans?: IPaymentMean[];
+  // paymentMeans?: IPaymentMean[];
 
   /** Un pago prepago */
-  prepaidPayment?: IPayment[];
+  payments?: IPayment[];
 
   /**
    * Un descuento o cargo que se aplica a un componente

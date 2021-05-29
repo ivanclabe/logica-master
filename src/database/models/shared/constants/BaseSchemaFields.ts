@@ -1,10 +1,9 @@
-import { Schema } from 'mongoose';
+import { Schema, Types } from 'mongoose';
 
 import { statusCodeType } from '../../../../interfaces/extends/Base';
 import { codeSchema } from '../subdocuments/code';
 import { DOCUMENT_NAME as PeriodModelName } from '../../common/period';
-import { DOCUMENT_NAME as GroupOptionTypeModelName } from '../../common/groupOptionType';
-import { monetarySchema } from '../subdocuments/monetary';
+import { DOCUMENT_NAME as ItemModelName } from '../../inventary/item';
 
 export const BaseSchemaFields = {
   code: codeSchema,
@@ -21,6 +20,18 @@ export const BaseWithSequenceSchemaFields = {
   ...BaseSchemaFields
 };
 
+export const BaseMovLineSchemaFields = {
+  ...BaseSchemaFields,
+  item: {
+    type: Schema.Types.ObjectId,
+    ref: ItemModelName,
+    required: true
+  },
+  note: [String],
+  quantity: { type: Types.Decimal128, required: true },
+  lineAmount: { type: Types.Decimal128, required: true }
+};
+
 export const BaseMovSchemaFields = {
   ...BaseSchemaFields,
   documentDate: { type: Date, default: Date.now },
@@ -28,16 +39,8 @@ export const BaseMovSchemaFields = {
     type: Schema.Types.ObjectId,
     ref: PeriodModelName
   },
-  currencyCode: {
-    type: Schema.Types.ObjectId,
-    ref: GroupOptionTypeModelName,
-    required: true
-  },
-  note: [String],
-  monetaryTotal: {
-    type: monetarySchema,
-    required: true
-  }
+  currencyCode: String,
+  note: [String]
 };
 
 export const BaseQuantitySchemaFields = {
