@@ -21,10 +21,21 @@ const partySchema: Schema = new Schema(
       address: addressSchema,
       description: [String]
     },
+    phone: {
+      type: String,
+      validate: {
+        validator: function (v: string) {
+          return /\d{3}-\d{3}-\d{4}/.test(v);
+        },
+        message: (props: any) => `${props.value} is not a valid phone number!`
+      },
+      required: true
+    },
     email: {
       type: String,
-      trim: true,
-      lowercase: true
+      lowercase: true,
+      unique: true,
+      required: true
     },
     logo: String,
     website: String,

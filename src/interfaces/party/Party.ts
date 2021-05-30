@@ -27,8 +27,8 @@ export interface IParty extends Base {
     address: IAddress;
     description?: string[];
   };
+  phone: string;
   email: string;
-  phone: string[];
   logo?: string;
   website?: string;
 
