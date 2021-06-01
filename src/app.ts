@@ -1,17 +1,24 @@
-import createError from 'http-errors';
+import { createServer } from 'http';
 import express, { Request, Response, NextFunction } from 'express';
+import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+import { rootRouter } from './routes';
+
 const app = express();
+const port = process.env.PORT || '3000';
+
+app.set('port', port);
 
 app.use(logger('dev'));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api', rootRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -46,4 +53,9 @@ app.use(
   }
 );
 
-export default app;
+const server = createServer(app);
+server.listen(port, () => {
+  console.log(`Server running at ${port}`);
+});
+
+//export default app;
