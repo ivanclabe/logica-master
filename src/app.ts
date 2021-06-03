@@ -1,24 +1,43 @@
-import { createServer } from 'http';
 import express, { Request, Response, NextFunction } from 'express';
+import { createServer } from 'http';
+import vhost from 'vhost';
 import createError from 'http-errors';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import morgan from 'morgan';
 
 import { rootRouter } from './routes';
 
+const mainapp = express();
+
+// create app that will server user content from public/{username}/
+const userapp = express();
+
+userapp.use((req: any, res: Response, next: NextFunction) => {
+  const username = req.vhost[0]; // username is the "*"
+
+  // pretend request was for /{username}/* for file serving
+  req.originalUrl = req.url;
+  req.url = '/' + username + req.url;
+
+  next();
+});
+
+// create main app
 const app = express();
 const port = process.env.PORT || '3000';
 
 app.set('port', port);
-
-app.use(logger('dev'));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', rootRouter);
+// add vhost routing for main app
+app.use(vhost('userpages.local', mainapp));
+app.use(vhost('www.userpages.local', mainapp));
+
+// listen on all subdomains for user pages
+app.use(vhost('*.localhost', userapp));
+
+// app.use('/api', rootRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
