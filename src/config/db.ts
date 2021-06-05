@@ -1,5 +1,5 @@
 import { ConnectionOptions, createConnection } from 'mongoose';
-import { development } from './constants';
+import constants from './constants';
 
 const options: ConnectionOptions = {
   useNewUrlParser: true,
@@ -7,7 +7,7 @@ const options: ConnectionOptions = {
   useCreateIndex: true
 };
 
-const connectDB = createConnection(development.mongoUrl, options);
+const connectDB = createConnection(constants.mongoUrl, options);
 connectDB.then(
   () => {
     console.log('Connected correctly to DB Logica');

@@ -1,7 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { createServer } from 'http';
+import passport from 'passport';
 import vhost from 'vhost';
 import createError from 'http-errors';
+import cors from 'cors';
 import morgan from 'morgan';
 
 import { rootRouter } from './routes';
@@ -27,8 +29,12 @@ const port = process.env.PORT || '3000';
 
 app.set('port', port);
 app.use(morgan('combined'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(passport.initialize());
+passport.use(passportMiddleware);
 
 // add vhost routing for main app
 app.use(vhost('userpages.local', mainapp));
