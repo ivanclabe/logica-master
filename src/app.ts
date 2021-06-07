@@ -6,6 +6,7 @@ import createError from 'http-errors';
 import cors from 'cors';
 import morgan from 'morgan';
 
+import { jwtPassport } from './middlewares/passport';
 import { rootRouter } from './routes';
 
 const mainapp = express();
@@ -34,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
-passport.use(passportMiddleware);
+passport.use(jwtPassport);
 
 // add vhost routing for main app
 app.use(vhost('userpages.local', mainapp));

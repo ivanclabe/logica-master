@@ -8,7 +8,10 @@ import { UserModel } from '../database/models/users/user';
 import configConstants from '../config/constants';
 
 passport.use(new LocalStrategy(UserModel.authenticate()));
-passport.serializeUser(UserModel.serializeUser());
+// passport.serializeUser<number>(UserModel.serializeUser());
+passport.serializeUser((user: any, done: (a: any, b: string) => void) => {
+  done(null, user._id);
+});
 passport.deserializeUser(UserModel.deserializeUser());
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -21,8 +24,9 @@ const strategyOptions = {
   secretOrKey: configConstants.secretKey
 };
 
-export const jwtPassport = passport.use(
-  new JwtStrategy(strategyOptions, async (jwtPayload, done) => {
+export const jwtPassport = new JwtStrategy(
+  strategyOptions,
+  async (jwtPayload, done) => {
     console.log('JWT payload: ', jwtPayload);
     try {
       const user = await UserModel.findById(jwtPayload._id);
@@ -33,7 +37,7 @@ export const jwtPassport = passport.use(
     } catch (error) {
       done(error, false);
     }
-  })
+  }
 );
 
 export const verifyUser = passport.authenticate('jwt', { session: false });
