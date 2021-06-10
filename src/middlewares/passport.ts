@@ -4,7 +4,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import jwt from 'jsonwebtoken';
 
-import { UserModel } from '../database/models/users/user';
+import { UserModel } from '../database/models/auth/user';
 import configConstants from '../config/constants';
 
 passport.use(new LocalStrategy(UserModel.authenticate()));
