@@ -1,18 +1,33 @@
 import { makeExecutableSchema } from 'graphql-tools';
-import { gql } from 'apollo-server-express';
+import { buildSchema } from 'graphql';
+
+// // Construct a schema, using GraphQL schema language
+// export const schema = buildSchema(`
+//   type Query {
+//     hello: String
+//   }
+// `);
+
+// // The root provides a resolver function for each API endpoint
+// export const root = {
+//   hello: () => {
+//     return 'Hello world!';
+//   }
+// };
 
 // The GraphQL schema
-const typeDefs = gql`
+export const typeDefs = `
   type Query {
-    "A simple type for getting started!"
     hello: String
   }
 `;
 
 // A map of functions which return data for the schema.
-const resolvers = {
+export const resolvers = {
   Query: {
-    hello: () => 'world'
+    hello: () => {
+      return 'Hello world!';
+    }
   }
 };
 
